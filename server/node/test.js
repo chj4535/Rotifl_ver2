@@ -1,0 +1,31 @@
+rm /var/lib/apt/lists/repo.mongodb.org_apt_ubuntu_dists_bionic_mongodb-org_4.0_Release
+rm /var/lib/apt/lists/repo.mongodb.org_apt_ubuntu_dists_xenial_mongodb-org_3.6_Release
+rm /var/lib/apt/lists/repo.mongodb.org_apt_ubuntu_dists_bionic_mongodb-org_4.0_Release.gpg
+rm /var/lib/apt/lists/repo.mongodb.org_apt_ubuntu_dists_xenial_mongodb-org_3.6_multiverse_binary-arm64_Packages
+rm /var/lib/apt/lists/repo.mongodb.org_apt_ubuntu_dists_xenial_mongodb-org_3.6_Release.gpg
+rm /var/lib/apt/lists/repo.mongodb.org_apt_ubuntu_dists_bionic_mongodb-org_4.0_multiverse_binary-amd64_Packages
+rm /var/lib/apt/lists/repo.mongodb.org_apt_ubuntu_dists_xenial_mongodb-org_3.6_multiverse_binary-amd64_Packages
+rm /var/node/node_modules/mongodb
+rm /var/node/node_modules/mongodb/lib/topologies/mongos.js
+rm /var/node/node_modules/mongodb/lib/mongo_client.js
+rm /var/node/node_modules/mongodb/lib/operations/mongo_client_ops.js
+rm /var/node/node_modules/mongodb-core
+rm /var/node/node_modules/mongodb-core/lib/auth/mongocr.js
+rm /var/node/node_modules/mongodb-core/lib/topologies/mongos.js
+rm /var/cache/apt/archives/mongodb-org-shell_4.0.4_amd64.deb
+rm /var/cache/apt/archives/mongodb-org-mongos_4.0.4_amd64.deb
+rm /var/cache/apt/archives/mongodb-server_1%3a3.6.3-0ubuntu1_all.deb
+rm /var/cache/apt/archives/mongodb-clients_1%3a3.6.3-0ubuntu1_amd64.deb
+rm /var/cache/apt/archives/mongodb-org-server_4.0.4_amd64.deb
+rm /var/cache/apt/archives/mongodb-org_4.0.4_amd64.deb
+rm /var/cache/apt/archives/mongodb_1%3a3.6.3-0ubuntu1_amd64.deb
+rm /var/cache/apt/archives/mongodb-server-core_1%3a3.6.3-0ubuntu1_amd64.deb
+rm /var/cache/apt/archives/mongo-tools_3.6.3-0ubuntu1_amd64.deb
+rm /var/cache/apt/archives/mongodb-org-tools_4.0.4_amd64.deb
+rm /var/crash/mongodb-org-tools.0.crash
+rm /var/crash/mongodb-org-server.0.crash
+rm /var/crash/mongodb-org-mongos.0.crash
+
+
+rm /var/node/node_modules/mongodb
+rm /var/node/node_modules/mongodb-core
