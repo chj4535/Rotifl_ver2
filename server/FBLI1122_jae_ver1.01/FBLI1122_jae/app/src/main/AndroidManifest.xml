@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.prfc">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".AccountActivity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AccountActivity.LoginActivity" />
+        <activity android:name=".AccountActivity.SignupActivity" />
+        <activity android:name=".AccountActivity.ResetPasswordActivity" />
+        <activity android:name=".AccountActivity.BudgetManageActivity" />
+        <activity android:name=".AccountActivity.GoDutchActivity" />
+        <activity
+            android:name=".AccountActivity.SetBudgetActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".AccountActivity.SetNameActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".AccountActivity.CommunityActivity" />
+        <activity android:name=".AccountActivity.ChattingActivity" />
+        <activity android:name=".AccountActivity.GroupMenuActivity" />
+        <activity android:name=".AccountActivity.GroupActivity" />
+        <activity
+            android:name=".AccountActivity.MakeGroupActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".AccountActivity.SampleActivity" />
+        <activity android:name=".AccountActivity.testgroupActivity" />
+        <activity
+            android:name=".AccountActivity.ApplySpentActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".AccountActivity.SpentListActivity" />
+        <activity android:name=".AccountActivity.EditSpentList" />
+        <activity
+            android:name=".AccountActivity.GroupItemPopupActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".AccountActivity.MessengerActivity" />
+        <activity android:name=".AccountActivity.list_item" />
+        <activity android:name=".AccountActivity.MyListAdpater" />
+        <activity android:name=".AccountActivity.BoardDetailActivity" />
+        <activity android:name=".AccountActivity.BoardPostActivity"></activity>
+    </application>
+
+</manifest>

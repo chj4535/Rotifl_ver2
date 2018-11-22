@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00bfbf</color>
+    <color name="colorPrimaryDark">#555959</color>
+    <color name="colorAccent">#009e9e</color>
+
+    <color name="bg_login">#26ae90</color>
+    <color name="bg_register">#2e3237</color>
+    <color name="bg_main">#428bca</color>
+    <color name="white">#ffffff</color>
+    <color name="input_login">#222222</color>
+    <color name="input_login_hint">#999999</color>
+    <color name="input_register">#888888</color>
+    <color name="input_register_bg">#3b4148</color>
+    <color name="input_register_hint">#5e6266</color>
+    <color name="btn_login">#26ae90</color>
+    <color name="btn_login_bg">#eceef1</color>
+    <color name="lbl_name">#333333</color>
+    <color name="btn_logut_bg">#ff6861</color>
+
+    <!--Theme & Accent -->
+    <color name="black">#000000</color>>
+    <color name="red500">#F44336</color>
+    <color name="teal100">#B2DFDB</color>
+    <color name="teal500">#009688</color>
+    <color name="cyan500">#00BCD4</color>
+    <color name="cyan900">#006064</color>
+    <color name="lightBlue300">#4FC3F7</color>
+    <color name="lightBlue500">#03A9F4</color>
+    <color name="deepOrange500">#FF5722</color>
+    <color name="amber500">#FFC107</color>
+    <color name="blue500">#2196F3</color>
+    <color name="green500">#4CAF50</color>
+    <color name="indigo500">#3F51B5</color>
+
+
+
+    <!-- Grey scales -->
+    <color name="gray200">#EEEEEE</color>
+    <color name="gray300">#E0E0E0</color>
+    <color name="gray400">#BDBDBD</color>
+    <color name="gray500">#9E9E9E</color>
+    <color name="blueGray100">#CFD8DC</color>
+    <color name="blueGray200">#B0BEC5</color>
+    <color name="blueGray300">#90A4AE</color>
+    <color name="blueGray500">#607D8B</color>
+    <color name="blueGray700">#455A64</color>
+</resources>
