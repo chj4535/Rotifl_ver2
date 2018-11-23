@@ -52,13 +52,13 @@ public class PersonalBudgetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_personal_budget);
         userid = FirebaseAuth.getInstance().getCurrentUser().getUid();;
 
-        Budget = (TextView)findViewById(R.id.budget_view);
-        Spent = (TextView)findViewById(R.id.spent_view);
-        remaining = (TextView)findViewById(R.id.money_remain);
-        SetBudget = (Button)findViewById(R.id.set_budget);
-        GoDutch = (Button)findViewById(R.id.manage_godutch);
-        ApplySpent = (Button)findViewById(R.id.apply_spent);
-        SpentList = (Button)findViewById(R.id.expense_list);
+//        Budget = (TextView)findViewById(R.id.budget_view);
+//        Spent = (TextView)findViewById(R.id.spent_view);
+//        remaining = (TextView)findViewById(R.id.money_remain);
+//        SetBudget = (Button)findViewById(R.id.set_budget);
+//        GoDutch = (Button)findViewById(R.id.manage_godutch);
+//        ApplySpent = (Button)findViewById(R.id.apply_spent);
+//        SpentList = (Button)findViewById(R.id.expense_list);
 
         //서버에서 설정한 예산을 불러와야함
         if(Budget.getText().toString() == null || Budget.getText().equals("")){
