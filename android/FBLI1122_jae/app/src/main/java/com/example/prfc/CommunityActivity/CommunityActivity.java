@@ -45,44 +45,44 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
 
         list_itemArrayList = new ArrayList<list_item>();
         MAP = new ArrayList<HashMap<String, String>>();
-        try{
-            new Task().execute().get();
-        }
-        catch (Exception e){
-
-        }
+    //    try{
+   //         new Task().execute().get();
+  //      }
+ //       catch (Exception e){
+//
+//        }
 
         //여기부터======================================================
-//        list_itemArrayList.add(
-//                new list_item(R.mipmap.ic_launcher,
-//                        new Date(),
-//                        "_id",
-//                        "boardid",
-//                        "title",
-//                        "user",
-//                        "content",
-//                        "comment"));
-//        list_itemArrayList.add(
-//                new list_item(R.mipmap.ic_launcher,
-//                        new Date(),
-//                        "_id2",
-//                        "boardid2",
-//                        "title2",
-//                        "user2",
-//                        "content2",
-//                        "comment2"));
-//        list_itemArrayList.add(
-//                new list_item(R.mipmap.ic_launcher,
-//                        new Date(),
-//                        "_id3",
-//                        "boardid3",
-//                        "title3",
-//                        "user3",
-//                        "content3",
-//                        "comment3"));
-//
-//        myListAdapter = new MyListAdpater(MainActivity.this, list_itemArrayList);
-//            listView.setAdapter(myListAdapter);
+        list_itemArrayList.add(
+                new list_item(R.mipmap.ic_launcher,
+                        new Date(),
+                        "_id",
+                        "boardid",
+                        "title",
+                        "user",
+                        "content",
+                        "comment"));
+        list_itemArrayList.add(
+                new list_item(R.mipmap.ic_launcher,
+                        new Date(),
+                        "_id2",
+                        "boardid2",
+                        "title2",
+                        "user2",
+                        "content2",
+                        "comment2"));
+        list_itemArrayList.add(
+                new list_item(R.mipmap.ic_launcher,
+                        new Date(),
+                        "_id3",
+                        "boardid3",
+                        "title3",
+                        "user3",
+                        "content3",
+                        "comment3"));
+
+        myListAdapter = new MyListAdpater(CommunityActivity.this, list_itemArrayList);
+            listView.setAdapter(myListAdapter);
 
         //여기까지=====================================================
 
