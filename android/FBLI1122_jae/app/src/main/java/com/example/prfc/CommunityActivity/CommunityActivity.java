@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Button;
 
 import com.example.prfc.Classes.MyListAdpater;
 import com.example.prfc.Classes.list_item;
@@ -35,14 +36,14 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
     ArrayList<list_item> list_itemArrayList;
     HashMap<String, String> item;
     ArrayList<HashMap<String, String>> MAP;
-
+    Button eddit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community);
         listView = (ListView) findViewById(R.id.list_view);
-
+        eddit = (Button)findViewById(R.id.edit);
         list_itemArrayList = new ArrayList<list_item>();
         MAP = new ArrayList<HashMap<String, String>>();
         try{
@@ -85,7 +86,12 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
 //            listView.setAdapter(myListAdapter);
 //
 //        //여기까지=====================================================
-
+        eddit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CommunityActivity.this, BoardPostActivity.class));
+            }
+        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

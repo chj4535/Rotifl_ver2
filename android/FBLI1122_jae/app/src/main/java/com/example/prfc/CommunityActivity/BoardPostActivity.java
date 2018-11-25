@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.prfc.R;
@@ -20,8 +21,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class BoardPostActivity extends AppCompatActivity {
-    TextInputEditText title;
-    TextInputEditText content;
+    EditText title;
+    EditText content;
     ImageView imageview;
     Button btn_upload;
     private String base64_string;
@@ -29,8 +30,8 @@ public class BoardPostActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_board);
-        title = (TextInputEditText) findViewById(R.id.titleInput);
-        content = (TextInputEditText) findViewById(R.id.contentInput);
+        title = (EditText) findViewById(R.id.titleInput);
+        content = (EditText) findViewById(R.id.contentInput);
         imageview = (ImageView)findViewById(R.id.imageInput);
         btn_upload = (Button) findViewById(R.id.Btn_upload);
 
