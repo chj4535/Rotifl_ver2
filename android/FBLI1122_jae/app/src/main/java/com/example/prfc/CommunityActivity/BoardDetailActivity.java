@@ -114,7 +114,7 @@ public class BoardDetailActivity extends AppCompatActivity {
 
             String serverURL = "";
 
-            serverURL = "http://13.209.15.179:50000/user//group/";
+            serverURL = "http://13.209.15.179:50000/user/test1/board";
             return connPOST(serverURL);
         }
 
