@@ -97,78 +97,78 @@ public class BoardDetailActivity extends AppCompatActivity {
                 pDialog.dismiss();
             }
             else{
-                BitmapData = getStringFromBitmap(image);
+//                BitmapData = getStringFromBitmap(image);
                 pDialog.dismiss();
                 Toast.makeText(BoardDetailActivity.this, "이미지가 존재하지 않습니다.",Toast.LENGTH_SHORT).show();
             }
         }
     }
-    public class PostTask extends AsyncTask<String, Void, String> {
-
-        String clientKey = "#########################";;
-        private String str, receiveMsg;
-        private final String ID = "########";
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String serverURL = "";
-
-            serverURL = "http://13.209.15.179:50000/user/test1/board";
-            return connPOST(serverURL);
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-        }
-
-    }
-
-
-    //Delete
-    public String connPOST(String serverURL, String... params){
-        JSONObject jsonObject = new JSONObject();
-        int responseStatusCode;
-
-        try {
-
-            URL url = new URL(serverURL);
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-            httpURLConnection.setReadTimeout(5000);
-            httpURLConnection.setConnectTimeout(5000);
-            httpURLConnection.setRequestMethod("POST");
-            httpURLConnection.connect();
-
-            responseStatusCode = httpURLConnection.getResponseCode();
-            System.out.println("************************************** delete ResponseCode " + responseStatusCode);
-
-            jsonObject.put("_id","csp");
-            jsonObject.put("boardid","tqtq");
-            jsonObject.put("title","대아");
-            jsonObject.put("user","cs");
-            jsonObject.put("content","Content");
-            jsonObject.put("comment","comment");
-            jsonObject.put("Image",BitmapData);
-
-
-
-            return "Delete(POST) Success";
-
-        } catch (Exception e) {
-
-            return new String("Delete Error: " + e.getMessage());
-        }
-    }
-    private String getStringFromBitmap(Bitmap bitmapPicture) {
-        String encodedImage;
-        ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
-        bitmapPicture.compress(Bitmap.CompressFormat.PNG, 100, byteArrayBitmapStream);
-        byte[] b = byteArrayBitmapStream.toByteArray();
-        encodedImage= Base64.encodeToString(b,Base64.DEFAULT);
-        return encodedImage;
-    }
+//    public class PostTask extends AsyncTask<String, Void, String> {
+//
+//        String clientKey = "#########################";;
+//        private String str, receiveMsg;
+//        private final String ID = "########";
+//
+//        @Override
+//        protected String doInBackground(String... params) {
+//
+//            String serverURL = "";
+//
+//            serverURL = "http://13.209.15.179:50000/user/test1/board";
+//            return connPOST(serverURL);
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String s) {
+//            super.onPostExecute(s);
+//
+//        }
+//
+//    }
+//
+//
+//    //Delete
+//    public String connPOST(String serverURL, String... params){
+//        JSONObject jsonObject = new JSONObject();
+//        int responseStatusCode;
+//
+//        try {
+//
+//            URL url = new URL(serverURL);
+//            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+//
+//            httpURLConnection.setReadTimeout(5000);
+//            httpURLConnection.setConnectTimeout(5000);
+//            httpURLConnection.setRequestMethod("POST");
+//            httpURLConnection.connect();
+//
+//            responseStatusCode = httpURLConnection.getResponseCode();
+//            System.out.println("************************************** delete ResponseCode " + responseStatusCode);
+//
+//            jsonObject.put("_id","csp");
+//            jsonObject.put("boardid","tqtq");
+//            jsonObject.put("title","대아");
+//            jsonObject.put("user","cs");
+//            jsonObject.put("content","Content");
+//            jsonObject.put("comment","comment");
+//            jsonObject.put("Image",BitmapData);
+//
+//
+//
+//            return "Delete(POST) Success";
+//
+//        } catch (Exception e) {
+//
+//            return new String("Delete Error: " + e.getMessage());
+//        }
+//    }
+//    private String getStringFromBitmap(Bitmap bitmapPicture) {
+//        String encodedImage;
+//        ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
+//        bitmapPicture.compress(Bitmap.CompressFormat.PNG, 100, byteArrayBitmapStream);
+//        byte[] b = byteArrayBitmapStream.toByteArray();
+//        encodedImage= Base64.encodeToString(b,Base64.DEFAULT);
+//        return encodedImage;
+//    }
 
 }
