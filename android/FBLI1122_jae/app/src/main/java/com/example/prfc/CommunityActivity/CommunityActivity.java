@@ -131,12 +131,12 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
                 JSONObject item = jsonArray.getJSONObject(i);
                 hashMap = new HashMap<>();//초기화
 
-                hashMap.put("_id", i+"번째유저");//item.getString("_id")
+//                hashMap.put("_id", i+"번째유저");//item.getString("_id")
                 hashMap.put("boardid", item.getString("boardid"));
                 hashMap.put("title", item.getString("title"));
                 hashMap.put("user", item.getString("user"));
                 hashMap.put("content", item.getString("content"));
-                hashMap.put("comment", item.getString("comment"));
+//                hashMap.put("comment", item.getString("comment"));
                 parsedItems.add(hashMap);
             }
 
@@ -199,12 +199,11 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
                 list_itemArrayList.add(
                         new list_item(R.mipmap.ic_launcher,
                                 new Date(),
-                                (String)MAP.get(k).get("_id"),
                                 (String)MAP.get(k).get("boardid"),
                                 (String)MAP.get(k).get("title"),
                                 (String)MAP.get(k).get("user"),
-                                (String)MAP.get(k).get("content"),
-                                (String)MAP.get(k).get("comment")));
+                                (String)MAP.get(k).get("content")));
+//                                (String)MAP.get(k).get("comment")));
             }
             myListAdapter = new MyListAdpater(CommunityActivity.this, list_itemArrayList);
             listView.setAdapter(myListAdapter);

@@ -92,19 +92,32 @@ public class list_item {
     }
 
 
-
     public list_item(int profile_image, Date write_date,
-                     String _id, String bordid,
+                     String bordid,
                      String title, String user,
-                     String content, String comment) {
+                     String content) {
         this.profile_image = profile_image;
         this.write_date = write_date;
         this._id = _id;
         this.boardid = bordid;
         this.title = title;
         this.user=user;
-        this.comment =comment;
+//        this.comment =comment;
         this.content = content;
     }
+
+//    public list_item(int profile_image, Date write_date,
+//                     String _id, String bordid,
+//                     String title, String user,
+//                     String content, String comment) {
+//        this.profile_image = profile_image;
+//        this.write_date = write_date;
+//        this._id = _id;
+//        this.boardid = bordid;
+//        this.title = title;
+//        this.user=user;
+//        this.comment =comment;
+//        this.content = content;
+//    }
 
 }

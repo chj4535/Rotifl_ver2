@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.prfc.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONObject;
 
@@ -26,6 +28,7 @@ public class BoardPostActivity extends AppCompatActivity {
     EditText content;
     ImageView imageview;
     Button btn_upload;
+    FirebaseUser user;
     private String base64_string;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,12 +38,11 @@ public class BoardPostActivity extends AppCompatActivity {
         content = (EditText) findViewById(R.id.contentInput);
         imageview = (ImageView)findViewById(R.id.imageInput);
         btn_upload = (Button) findViewById(R.id.Btn_upload);
-
-
+        user = FirebaseAuth.getInstance().getCurrentUser();
         btn_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                base64_string = getStringFromBitmap(imageview.getDrawingCache());
+//                base64_string = getStringFromBitmap(imageview.getDrawingCache());
                 new PostTask().execute();
                 startActivity(new Intent(BoardPostActivity.this, CommunityActivity.class));
             }
@@ -75,14 +77,14 @@ public class BoardPostActivity extends AppCompatActivity {
         int responseStatusCode;
 
         try {
-
-            jsonObject.put("_id","");
-            jsonObject.put("boardid","");
+//
+//            jsonObject.put("_id","");
+//            jsonObject.put("boardid","");
             jsonObject.put("title",title.getText().toString());
-            jsonObject.put("user","");
+            jsonObject.put("userid",user.getUid());
             jsonObject.put("content",content.getText().toString());
-            jsonObject.put("comment","");
-            jsonObject.put("Image",base64_string);
+//            jsonObject.put("comment","");
+//            jsonObject.put("Image","");
 
             URL url = new URL(serverURL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
