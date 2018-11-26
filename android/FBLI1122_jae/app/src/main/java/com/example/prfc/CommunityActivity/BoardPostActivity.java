@@ -17,6 +17,7 @@ import com.example.prfc.R;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -89,7 +90,15 @@ public class BoardPostActivity extends AppCompatActivity {
             httpURLConnection.setReadTimeout(5000);
             httpURLConnection.setConnectTimeout(5000);
             httpURLConnection.setRequestMethod("POST");
+            //httpURLConnection.setRequestProperty("Content-Type", "application/json");
             httpURLConnection.connect();
+
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            outputStream.write(jsonObject.toString().getBytes("UTF-8"));
+
+            outputStream.flush();
+            outputStream.close();
 
             responseStatusCode = httpURLConnection.getResponseCode();
             System.out.println("************************************** delete ResponseCode " + responseStatusCode);
@@ -101,6 +110,7 @@ public class BoardPostActivity extends AppCompatActivity {
             return new String("Delete Error: " + e.getMessage());
         }
     }
+
     private String getStringFromBitmap(Bitmap bitmapPicture) {
         String encodedImage;
         ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
