@@ -54,7 +54,7 @@ public class MyListAdpater extends BaseAdapter {
             profile_imageView = (ImageView)convertView.findViewById(R.id.imageView);
             relativeLayout = (RelativeLayout)convertView.findViewById(R.id.relativeLayout);
         }
-        nickname_textView.setText(this.list_itemArrayList.get(position).get_id());
+        nickname_textView.setText(this.list_itemArrayList.get(position).getUser());
         title_textView.setText(this.list_itemArrayList.get(position).getTitle());
         content_textView.setText(this.list_itemArrayList.get(position).getContent());
         date_textView.setText(this.list_itemArrayList.get(position).getWrite_date().toString());
