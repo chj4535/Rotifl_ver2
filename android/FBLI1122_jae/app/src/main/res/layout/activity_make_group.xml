@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="끝나는 날" />
+                android:text=" 끝나는 날" />
 
             <EditText
                 android:id="@+id/Date_end"
@@ -81,6 +81,32 @@
 
         </LinearLayout>
 
+
+        <TextView
+            android:id="@+id/make_group_invite_email_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/make_group_invite_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:hint="초대할 이메일을 입력하세요" />
+
+            <Button
+                android:id="@+id/make_group_invite_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="초대" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/group_add_button"

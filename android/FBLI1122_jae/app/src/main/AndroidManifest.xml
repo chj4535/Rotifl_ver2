@@ -31,7 +31,6 @@
             android:name=".AccountActivity.SetNameActivity"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".CommunityActivity.CommunityActivity" />
-        <activity android:name=".ChattingActivity.ChattingActivity" />
         <activity android:name=".GroupActivity.GroupMenuActivity" />
         <activity android:name=".GroupActivity.GroupActivity" />
         <activity
@@ -50,7 +49,7 @@
         <activity android:name=".Classes.MyListAdpater" />
         <activity android:name=".CommunityActivity.BoardDetailActivity" />
         <activity android:name=".CommunityActivity.BoardPostActivity" />
-        <activity android:name=".BudgetActivity.GroupBudgetActivity"></activity>
+        <activity android:name=".BudgetActivity.GroupBudgetActivity" />
     </application>
 
 </manifest>

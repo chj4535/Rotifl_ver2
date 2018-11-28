@@ -8,12 +8,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.prfc.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,10 +34,13 @@ public class MakeGroupActivity extends Activity {
 
     Button add;
     Button invite;
+    TextView show_email;
     EditText groupName;
     EditText location;
     EditText startDate;
     EditText endDate;
+    EditText email;
+
 
     String groupid;
     String userid;
@@ -44,6 +49,7 @@ public class MakeGroupActivity extends Activity {
     String start;
     String end;
     String username;
+    ArrayList<String> emails = new ArrayList<String>();
     ArrayList<HashMap<String,String>> parsedItems = new ArrayList<>();
     HashMap<String, String> hashMap = new HashMap<>();
     private static String TAG = "make Group list";
@@ -63,24 +69,25 @@ public class MakeGroupActivity extends Activity {
         location = (EditText)findViewById(R.id.location);
         startDate = (EditText)findViewById(R.id.Date_start);
         endDate = (EditText)findViewById(R.id.Date_end);
-
-        groupName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //groupName.setText("");
-            }
-        });
-        location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //location.setText("");
-            }
-        });
-
+        email = (EditText)findViewById(R.id.make_group_invite_email);
+        show_email = (TextView)findViewById(R.id.make_group_invite_email_textview);
+        invite = (Button)findViewById(R.id.make_group_invite_btn);
         add = (Button)findViewById(R.id.group_add_button);
 
+        invite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String temp;
+                if(!email.getText().toString().isEmpty()){
+                    emails.add(email.getText().toString());
+                    temp = show_email.getText().toString();
+                    temp = temp + "\n" + emails.get(emails.size()-1);
+                    show_email.setText(temp);
+                    email.setText("");
+                }
 
-
+            }
+        });
 
         //그룹 이름, 지역명만 이전 엑티비티에 넘어갑니다.
         add.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +112,8 @@ public class MakeGroupActivity extends Activity {
     public JSONObject makeJSONObject() {
 
         JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        JSONObject result = new JSONObject();
 
         try {
             jsonObject.put("groupname", name);
@@ -112,13 +121,20 @@ public class MakeGroupActivity extends Activity {
             jsonObject.put("groupstart", "2018-12-05");
             jsonObject.put("groupend", "2018-12-10");
 
+            for(int i = 0; i<emails.size(); i++){
+                jsonArray.put(emails.get(i));
+            }
+
+            result.put("groupinfo", jsonObject);
+            result.put("invitedUsers", jsonArray);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        System.out.println("************json test" + jsonObject.toString());
+        System.out.println("************json test" + result.toString());
 
-        return jsonObject;
+        return result;
     }
 
     @Override
