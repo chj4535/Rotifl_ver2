@@ -15,9 +15,11 @@ import java.util.List;
 public class MessageList {
 
     private List<SaveMessage> mMessages;
+    //private int groupid;
 
     public MessageList() {
         mMessages = new ArrayList<>();
+        //this.groupid = groupid;
     }
 
     public ArrayList<Message> getMessages() {

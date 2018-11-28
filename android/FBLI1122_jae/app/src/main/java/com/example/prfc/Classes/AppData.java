@@ -14,6 +14,12 @@ public class AppData {
         MessageList
     }
 
+    private static String key;//groupid as key
+
+    public AppData(String key){
+        this.key = key;
+    }
+
     /**
      * Save object data as json
      * @param context application context
@@ -51,23 +57,29 @@ public class AppData {
      * Save Message list
      * @param context application context
      * @param messages receive and sent messages
+     *
      */
     public static void putMessageList(Context context, MessageList messages) {
-        putObjectData(context, Key.MessageList.name(), messages);
+        putObjectData(context, key, messages);
     }
 
     /**
      * Load saved messages
      * @param context application context
      * @return saved messages
+     * 여기 고쳤다!!!!!!!!
      */
     public static MessageList getMessageList(Context context) {
-        return (MessageList) getObjectData(context,Key.MessageList.name(), MessageList.class);
+        return (MessageList) getObjectData(context, key, MessageList.class);
     }
 
     public static void reset(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
         sharedPreferences.edit().clear().apply();
+    }
+
+    public void setKey(String key){
+        this.key = key;
     }
 
 }

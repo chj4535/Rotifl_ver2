@@ -78,6 +78,7 @@ public class MessengerActivity extends Activity {
     private ChatView mChatView;
     private MessageList mMessageList;
     private ArrayList<User> mUsers;
+    AppData appData;
     String groupid;
     String userid;
     Socket socket;
@@ -91,16 +92,23 @@ public class MessengerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
 
-        initUsers();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         groupid = getIntent().getStringExtra("groupid");
-        //groupid = "15"; //For TEST
+        System.out.println("*************messengerActivity group id = "+ groupid);
+        //groupid = "20"; //For TEST
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userid = user.getUid();
+
+        initUsers();
 
         Connection connection = new Connection();
         connection.execute();
 
         mChatView = findViewById(R.id.chat_view);
+        if(groupid.equals("fail")){
+            Toast.makeText(this, "인터넷 연결 안됌", Toast.LENGTH_SHORT).show();
+        }
 
         //Load saved messages
         loadMessages();
@@ -205,7 +213,8 @@ public class MessengerActivity extends Activity {
                 //Reset edit text
                 mChatView.setInputText("");
 
-                //receiveMessage(message.getText());// receiveMessage는 오픈 소스의 챗봇 기능으로부터 메세지를 받아온다.
+                //receiveMessage("Test");
+                
             }
 
         });
@@ -321,7 +330,9 @@ public class MessengerActivity extends Activity {
      */
     private void loadMessages() {
         List<Message> messages = new ArrayList<>();
-        mMessageList = AppData.getMessageList(this);
+
+        appData = new AppData(groupid.toString());
+        mMessageList = appData.getMessageList(this);
         if (mMessageList == null) {
             mMessageList = new MessageList();
         } else {
@@ -358,9 +369,10 @@ public class MessengerActivity extends Activity {
     public void onPause() {
         super.onPause();
         //Save message
+        appData = new AppData(groupid.toString());
         mMessageList = new MessageList();
         mMessageList.setMessages(mChatView.getMessageView().getMessageList());
-        AppData.putMessageList(this, mMessageList);
+        appData.putMessageList(this, mMessageList);
     }
 
     @VisibleForTesting

@@ -89,7 +89,7 @@ public class MakeGroupActivity extends Activity {
             }
         });
 
-        //그룹 이름, 지역명만 이전 엑티비티에 넘어갑니다.
+        //그룹 이름, 지역명, 초대한 유저만 이전 엑티비티에 넘어갑니다.
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +99,7 @@ public class MakeGroupActivity extends Activity {
 
                 intent.putExtra("groupName", name);
                 intent.putExtra("location", location_str);
+                intent.putExtra("invitedUsers", emails);
 
                 Connection connection = new Connection();
                 connection.execute();
