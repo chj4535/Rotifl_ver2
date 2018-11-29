@@ -202,7 +202,7 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
                                 (String)MAP.get(k).get("boardid"),
                                 (String)MAP.get(k).get("title"),
                                 (String)MAP.get(k).get("user"),
-                                (String)MAP.get(k).get("content")));
+                                (String)MAP.get(k).get("content").substring(0,1)));
 //                                (String)MAP.get(k).get("comment")));
             }
             myListAdapter = new MyListAdpater(CommunityActivity.this, list_itemArrayList);
