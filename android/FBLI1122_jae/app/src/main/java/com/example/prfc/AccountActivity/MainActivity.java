@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         groupMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, GroupActivity.class));
+                startActivity(new Intent(MainActivity.this, GroupActivity.class));
             }
         });
 
@@ -231,8 +231,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("username", user.getDisplayName());
             jsonObject.put("userid", user.getUid());
+            jsonObject.put("username", user.getDisplayName());
+            jsonObject.put("email", user.getEmail());
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -32,11 +32,10 @@ public class GroupItemPopupActivity extends Activity {
             public void onClick(View view) {
                 int position;
                 position = comingIntent.getIntExtra("position",9999);
-                System.out.println("***************************delete hi, position ="+position);
+
                 intent.putExtra("which", 1);
                 intent.putExtra("position", position);
 
-                //System.out.println("**********************************************position :"+position);
                 setResult(RESULT_OK,intent);
 
                 finish();

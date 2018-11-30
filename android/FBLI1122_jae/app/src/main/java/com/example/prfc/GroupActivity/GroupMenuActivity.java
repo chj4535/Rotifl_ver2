@@ -10,11 +10,14 @@ import com.example.prfc.ChattingActivity.MessengerActivity;
 import com.example.prfc.BudgetActivity.PersonalBudgetActivity;
 import com.example.prfc.R;
 
+import java.util.ArrayList;
+
 public class GroupMenuActivity extends AppCompatActivity {
 
     private Button BudgetManage, Chatting;
 
     String groupid;
+    ArrayList invitedUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,7 @@ public class GroupMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_group_menu);
 
         groupid = getIntent().getStringExtra("groupid");
+        invitedUsers = getIntent().getStringArrayListExtra("invitedUsers");
 
         BudgetManage = (Button)findViewById(R.id.budget_manage);
         Chatting = (Button)findViewById(R.id.chatting);
@@ -38,6 +42,7 @@ public class GroupMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(GroupMenuActivity.this, MessengerActivity.class);
                 intent.putExtra("groupid", groupid);
+                intent.putExtra("invitedUsers", invitedUsers);
                 startActivity(intent);
             }
         });

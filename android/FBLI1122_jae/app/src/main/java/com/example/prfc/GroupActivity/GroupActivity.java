@@ -20,6 +20,7 @@ import com.example.prfc.Classes.Board;
 import com.example.prfc.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,6 +67,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();//구글 로그인은 이렇게 유저 네임 받는거 가능, 이메일 로그인은 setname할떄 db에 저장한다음에 거기서 읽어와야됨
         userid = user.getUid();
+        System.out.println("*****************************userid in group activity" + userid);
 
         Connection connection = new Connection();
         connection.execute("RequestGroupList");
@@ -100,7 +102,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
 
-                mBoardList.add(new Board(intent.getStringExtra("groupid"), intent.getStringExtra("groupName"), intent.getStringExtra("location"), "testname"));
+                mBoardList.add(new Board(intent.getStringExtra("groupid"), intent.getStringExtra("groupName"), intent.getStringExtra("location"), "testname", intent.getStringArrayListExtra("invitedUsers")));
                 mAdapter = new GroupListAdapter(mBoardList);
                 mMainRecyclerView.setAdapter(mAdapter);
 
@@ -135,7 +137,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    public ArrayList<HashMap<String, String>> parsing(String receivedData) {
+    public ArrayList parsing(String receivedData) {
 
         String groupid = "groupid";
         String groupname = "groupname";
@@ -144,30 +146,75 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         String groupend = "groupend";
         String groupuser = "groupuser";
 
+        ArrayList invitedUsers = new ArrayList();
+        ArrayList invitedUserList = new ArrayList();
+        ArrayList result = new ArrayList();
+
+        System.out.println("***********************json data : "+receivedData);
+
         try {
             JSONArray jsonArray = new JSONArray(receivedData);
+            /*JSONArray jsonArray = new JSONArray("[\n" +
+                    "\n" +
+                    "\t{\n" +
+                    "\t\t\"_id\": \"11111111111\",\n" +
+                    "\t\t\"groupinfo\": {\n" +
+                    "\t\t\t\"groupname\": \"test2\",\n" +
+                    "\t\t\t\"grouparea\": \"\",\n" +
+                    "\t\t\t\"groupstart\": \"2018-12-05\",\n" +
+                    "\t\t\t\"groupend\": \"2018-12-10\",\n" +
+                    "\t\t\t\"groupid\": \"11111111\"\n" +
+                    "\t\t},\n" +
+                    "\t\t\"invitedUsers\": [\"aaaa@aaa.com\", \"aaa@aaaa.com\"]\n" +
+                    "\t},\n" +
+                    "\t{\n" +
+                    "\t\t\"_id\": \"22222222222\",\n" +
+                    "\t\t\"groupinfo\": {\n" +
+                    "\t\t\t\"groupname\": \"test2\",\n" +
+                    "\t\t\t\"grouparea\": \"\",\n" +
+                    "\t\t\t\"groupstart\": \"2018-12-05\",\n" +
+                    "\t\t\t\"groupend\": \"2018-12-10\",\n" +
+                    "\t\t\t\"groupid\": \"2222222\"\n" +
+                    "\t\t},\n" +
+                    "\t\t\"invitedUsers\": [\"bbb@bbbb.com\", \"bbbb@bbb.com\"]\n" +
+                    "\t}\n" +
+                    "\n" +
+                    "]");*/
+
+            JSONObject jsonObject;
+            JSONObject groupinfo;
+            JSONArray emails;
+            hashMap = new HashMap<>();
 
             for (int i = 0; i < jsonArray.length(); i++) {
+                jsonObject = jsonArray.getJSONObject(i);
+                groupinfo = jsonObject.getJSONObject("groupinfo");
+                hashMap.put(groupname, groupinfo.get(groupname).toString());
+                hashMap.put(grouparea, groupinfo.get(grouparea).toString());
+                hashMap.put(groupstart, groupinfo.get(groupstart).toString());
+                hashMap.put(groupend, groupinfo.get(groupend).toString());
+                hashMap.put(groupid, groupinfo.get(groupid).toString());
 
-                JSONObject item = jsonArray.getJSONObject(i);
+                emails = jsonObject.getJSONArray("invitedUsers");
 
-                hashMap = new HashMap<>();
-
-                hashMap.put(groupname, item.getString(groupname));
-                hashMap.put(grouparea, item.getString(grouparea));
-                hashMap.put(groupstart, item.getString(groupstart));
-                hashMap.put(groupend, item.getString(groupend));
-                hashMap.put(groupid, item.getString(groupid));
+                for(int j = 0; j< emails.length(); j++){
+                    invitedUsers.add(emails.getString(j));
+                }
 
                 parsedItems.add(hashMap);
+                invitedUserList.add(invitedUsers);
+                invitedUsers = new ArrayList();
             }
 
-        } catch (JSONException e) {
+            result.add(parsedItems);
+            result.add(invitedUserList);
+        }
+        catch (JSONException e) {
 
             Log.d(TAG, "showResult : ", e);
         }
 
-        return parsedItems;
+        return result;
     }
 
     private class GroupListAdapter extends RecyclerView.Adapter<GroupListAdapter.GroupListViewHolder> {
@@ -231,9 +278,9 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(View v) {
                 int position = getPosition();
 
-                System.out.println("***************************To groupmenuactivity position = " + position);
                 Intent intent = new Intent(v.getContext(), GroupMenuActivity.class);
                 intent.putExtra("groupid", mBoardList.get(position).getId());
+                intent.putExtra("invitedUsers", mBoardList.get(position).getInvitedUsers());
                 v.getContext().startActivity(intent);
             }
         }
@@ -254,6 +301,9 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             //그룹 불러오기
+            ArrayList parsed;
+            ArrayList invitedUserList = new ArrayList();
+
             HashMap<String, String> item;
 
             //if(result == "ERROR")
@@ -261,12 +311,16 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(GroupActivity.this, result, Toast.LENGTH_SHORT).show();
 
             if(isLookup == true){
-                parsedItems = parsing(result);
+                parsed = parsing(result);
+                parsedItems = (ArrayList<HashMap<String, String>>)parsed.get(0);
+                invitedUserList = (ArrayList)parsed.get(1);
+
                 System.out.println("***********************result" + result);
 
                 for (int i = 0; i < parsedItems.size(); i++) {
                     item = parsedItems.get(i);
-                    mBoardList.add(new Board(item.get("groupid"), item.get("groupname"), null, "testname"));
+                    mBoardList.add(new Board(item.get("groupid"), item.get("groupname"), null, "testname", (ArrayList)invitedUserList.get(i)));
+
                 }
 
                 mAdapter = new GroupListAdapter(mBoardList);
@@ -306,13 +360,6 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         public String connPOST(String serverURL, String... params){
             JSONObject jsonObject = new JSONObject();
             int responseStatusCode;
-
-            /*try {
-                jsonObject.put("groupid", params[0]);
-                jsonObject.put("userid", params[1]);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }*/
 
             try {
 

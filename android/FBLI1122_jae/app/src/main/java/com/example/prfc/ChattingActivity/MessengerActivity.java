@@ -81,6 +81,7 @@ public class MessengerActivity extends Activity {
     AppData appData;
     String groupid;
     String userid;
+    ArrayList invitedUsers;
     Socket socket;
 
     private int mReplyDelay = -1;
@@ -93,6 +94,7 @@ public class MessengerActivity extends Activity {
         setContentView(R.layout.activity_messenger);
 
         groupid = getIntent().getStringExtra("groupid");
+        invitedUsers = getIntent().getStringArrayListExtra("invitedUsers");
         System.out.println("*************messengerActivity group id = "+ groupid);
         //groupid = "20"; //For TEST
 
@@ -205,7 +207,7 @@ public class MessengerActivity extends Activity {
                         .setStatus(MyMessageStatusFormatter.STATUS_DELIVERED)
                         .build();
 
-                //아래는 동작 설정인 것 같다.
+
                 //Set to chat view
                 mChatView.send(message);
                 //Add message list
@@ -214,7 +216,7 @@ public class MessengerActivity extends Activity {
                 mChatView.setInputText("");
 
                 //receiveMessage("Test");
-                
+
             }
 
         });
