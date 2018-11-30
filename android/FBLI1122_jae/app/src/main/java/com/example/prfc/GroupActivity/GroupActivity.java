@@ -37,6 +37,9 @@ import java.util.List;
 
 public class GroupActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final int RequestGroupList = 100;
+    public static final int RequestLeave = 101;
+
     private Button enter;
 
     private RecyclerView mMainRecyclerView;
@@ -53,6 +56,9 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
     HashMap<String, String> hashMap = new HashMap<>();
     private static String TAG = "show Group list";
     int i = 0;
+    boolean connectionFail = false;
+
+    ArrayList<Mate> testList;
 
     public interface ListBtnClickListener {
         void onListBtnClick(int position);
@@ -67,7 +73,6 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();//구글 로그인은 이렇게 유저 네임 받는거 가능, 이메일 로그인은 setname할떄 db에 저장한다음에 거기서 읽어와야됨
         userid = user.getUid();
-        System.out.println("*****************************userid in group activity" + userid);
 
         Connection connection = new Connection();
         connection.execute("RequestGroupList");
@@ -101,11 +106,20 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         //onclicklistener 그룹 추가
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-
+                /*
                 mBoardList.add(new Board(intent.getStringExtra("groupid"), intent.getStringExtra("groupName"), intent.getStringExtra("location"), "testname", intent.getStringArrayListExtra("invitedUsers")));
                 mAdapter = new GroupListAdapter(mBoardList);
                 mMainRecyclerView.setAdapter(mAdapter);
-
+                */
+                if(connectionFail == true) {
+                    mBoardList.add(new Board("2", "testname", "testarea", username, testList));
+                    mAdapter = new GroupListAdapter(mBoardList);
+                    mMainRecyclerView.setAdapter(mAdapter);
+                }
+                else{
+                Connection connection = new Connection();
+                connection.execute("RequestGroupList");
+                }
             }
         }
         //onlongclicklistener 그룹 탈퇴 및 변경
@@ -118,7 +132,6 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
                     //그룹 탈퇴
                     if (which == 1) {
                         groupid = mBoardList.get(position).getId();
-                        System.out.println("***********************board hi delete, position = "+position);
                         Connection conn = new Connection();
                         conn.execute("RequestLeave", groupid, userid);
                         mBoardList.remove(position);
@@ -144,66 +157,41 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         String grouparea = "grouparea";
         String groupstart = "groupstart";
         String groupend = "groupend";
-        String groupuser = "groupuser";
 
         ArrayList invitedUsers = new ArrayList();
         ArrayList invitedUserList = new ArrayList();
         ArrayList result = new ArrayList();
 
-        System.out.println("***********************json data : "+receivedData);
-
         try {
             JSONArray jsonArray = new JSONArray(receivedData);
-            /*JSONArray jsonArray = new JSONArray("[\n" +
-                    "\n" +
-                    "\t{\n" +
-                    "\t\t\"_id\": \"11111111111\",\n" +
-                    "\t\t\"groupinfo\": {\n" +
-                    "\t\t\t\"groupname\": \"test2\",\n" +
-                    "\t\t\t\"grouparea\": \"\",\n" +
-                    "\t\t\t\"groupstart\": \"2018-12-05\",\n" +
-                    "\t\t\t\"groupend\": \"2018-12-10\",\n" +
-                    "\t\t\t\"groupid\": \"11111111\"\n" +
-                    "\t\t},\n" +
-                    "\t\t\"invitedUsers\": [\"aaaa@aaa.com\", \"aaa@aaaa.com\"]\n" +
-                    "\t},\n" +
-                    "\t{\n" +
-                    "\t\t\"_id\": \"22222222222\",\n" +
-                    "\t\t\"groupinfo\": {\n" +
-                    "\t\t\t\"groupname\": \"test2\",\n" +
-                    "\t\t\t\"grouparea\": \"\",\n" +
-                    "\t\t\t\"groupstart\": \"2018-12-05\",\n" +
-                    "\t\t\t\"groupend\": \"2018-12-10\",\n" +
-                    "\t\t\t\"groupid\": \"2222222\"\n" +
-                    "\t\t},\n" +
-                    "\t\t\"invitedUsers\": [\"bbb@bbbb.com\", \"bbbb@bbb.com\"]\n" +
-                    "\t}\n" +
-                    "\n" +
-                    "]");*/
 
             JSONObject jsonObject;
             JSONObject groupinfo;
-            JSONArray emails;
+            JSONArray mates;
             hashMap = new HashMap<>();
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 jsonObject = jsonArray.getJSONObject(i);
                 groupinfo = jsonObject.getJSONObject("groupinfo");
+
                 hashMap.put(groupname, groupinfo.get(groupname).toString());
                 hashMap.put(grouparea, groupinfo.get(grouparea).toString());
                 hashMap.put(groupstart, groupinfo.get(groupstart).toString());
                 hashMap.put(groupend, groupinfo.get(groupend).toString());
                 hashMap.put(groupid, groupinfo.get(groupid).toString());
 
-                emails = jsonObject.getJSONArray("invitedUsers");
+                mates = jsonObject.getJSONArray("invitedUsers");
 
-                for(int j = 0; j< emails.length(); j++){
-                    invitedUsers.add(emails.getString(j));
+                JSONObject mate;
+                for(int j = 0; j< mates.length(); j++){
+                    mate = mates.getJSONObject(j);
+                    invitedUsers.add(new Mate(mate.getString("name"), mate.getString("email")));
                 }
 
                 parsedItems.add(hashMap);
                 invitedUserList.add(invitedUsers);
                 invitedUsers = new ArrayList();
+                hashMap = new HashMap<>();
             }
 
             result.add(parsedItems);
@@ -239,6 +227,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
             Board data = mBoardList.get(position);
             holder.mTitleTextView.setText(data.getTitle());
             holder.mNameTextView.setText(data.getName());
+            holder.area.setText(data.getContent());
         }
 
         @Override
@@ -250,6 +239,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
 
             private TextView mTitleTextView;
             private TextView mNameTextView;
+            private TextView area;
 
             public GroupListViewHolder(View itemView) {
                 super(itemView);
@@ -271,6 +261,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
 
                 mTitleTextView = itemView.findViewById(R.id.item_title_text);
                 mNameTextView = itemView.findViewById(R.id.item_name_text);
+                area = itemView.findViewById(R.id.group_item_area);
             }
 
 
@@ -279,8 +270,8 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
                 int position = getPosition();
 
                 Intent intent = new Intent(v.getContext(), GroupMenuActivity.class);
-                intent.putExtra("groupid", mBoardList.get(position).getId());
-                intent.putExtra("invitedUsers", mBoardList.get(position).getInvitedUsers());
+                intent.putExtra("group", mBoardList.get(position));
+
                 v.getContext().startActivity(intent);
             }
         }
@@ -310,21 +301,30 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
 
             Toast.makeText(GroupActivity.this, result, Toast.LENGTH_SHORT).show();
 
+
+            if(result.equals("Error: Failed to connect to /13.209.15.179:50000"))
+            {
+                connectionFail = true;
+                testList = new ArrayList<>();
+                testList.add(new Mate("임재원", "gift21cna@gmail.com"));
+                testList.add(new Mate("KIL WOO GEUN", "rlfdnrms@gmail.com"));
+            }
+
+            else{
             if(isLookup == true){
                 parsed = parsing(result);
                 parsedItems = (ArrayList<HashMap<String, String>>)parsed.get(0);
                 invitedUserList = (ArrayList)parsed.get(1);
 
-                System.out.println("***********************result" + result);
-
                 for (int i = 0; i < parsedItems.size(); i++) {
                     item = parsedItems.get(i);
-                    mBoardList.add(new Board(item.get("groupid"), item.get("groupname"), null, "testname", (ArrayList)invitedUserList.get(i)));
+                    mBoardList.add(new Board(item.get("groupid"), item.get("groupname"), item.get("grouparea"), username, (ArrayList)invitedUserList.get(i)));//일단 유저 이름.
 
                 }
 
                 mAdapter = new GroupListAdapter(mBoardList);
                 mMainRecyclerView.setAdapter(mAdapter);
+            }
             }
 
         }
@@ -348,7 +348,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
                 groupid = params[1];
                 userid = params[2];
                 serverURL = "http://13.209.15.179:50000/user/"+ userid + "/group/"+ groupid;
-                return connPOST(serverURL);
+                return connDELETE(serverURL);
             }
 
             else
@@ -357,8 +357,8 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         }
 
         //Delete
-        public String connPOST(String serverURL, String... params){
-            JSONObject jsonObject = new JSONObject();
+        public String connDELETE(String serverURL, String... params){
+
             int responseStatusCode;
 
             try {
@@ -374,7 +374,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
                 responseStatusCode = httpURLConnection.getResponseCode();
                 System.out.println("************************************** delete ResponseCode " + responseStatusCode);
 
-                return "Delete(POST) Success";
+                return "Delete Success";
 
             } catch (Exception e) {
 

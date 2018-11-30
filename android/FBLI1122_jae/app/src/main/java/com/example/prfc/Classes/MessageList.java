@@ -58,7 +58,7 @@ public class MessageList {
 
     private SaveMessage convertMessage(Message message) {
         SaveMessage saveMessage = new SaveMessage(
-                Integer.valueOf(message.getUser().getId()),
+                message.getUser().getId(),
                 message.getUser().getName(),
                 message.getText(),
                 message.getSendTime(),
@@ -95,7 +95,7 @@ public class MessageList {
     }
 
     private class SaveMessage {
-        private int mId;
+        private String mId;
         private String mUsername;
         private String mContent;
         private Calendar mCreatedAt;
@@ -103,7 +103,7 @@ public class MessageList {
         private String mPictureString;
         private Message.Type mType;
 
-        public SaveMessage(int id, String username, String content, Calendar createdAt, boolean isRightMessage) {
+        public SaveMessage(String id, String username, String content, Calendar createdAt, boolean isRightMessage) {
             mId = id;
             mUsername = username;
             mContent = content;
@@ -111,7 +111,7 @@ public class MessageList {
             mRightMessage = isRightMessage;
         }
 
-        public int getId() {
+        public String getId() {
             return mId;
         }
 

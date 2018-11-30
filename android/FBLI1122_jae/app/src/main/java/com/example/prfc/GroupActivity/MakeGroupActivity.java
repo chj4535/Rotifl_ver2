@@ -114,6 +114,7 @@ public class MakeGroupActivity extends Activity {
 
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray = new JSONArray();
+        JSONObject emailObject = new JSONObject();
         JSONObject result = new JSONObject();
 
         try {
@@ -123,7 +124,9 @@ public class MakeGroupActivity extends Activity {
             jsonObject.put("groupend", "2018-12-10");
 
             for(int i = 0; i<emails.size(); i++){
-                jsonArray.put(emails.get(i));
+
+                emailObject.put("email", emails.get(i));
+                jsonArray.put(emailObject);
             }
 
             result.put("groupinfo", jsonObject);

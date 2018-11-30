@@ -5,11 +5,11 @@ import android.graphics.Bitmap;
 import com.github.bassaer.chatmessageview.model.IChatUser;
 
 public class User implements IChatUser {
-    Integer id;
+    String id;//email
     String name;
     Bitmap icon;
 
-    public User(int id, String name, Bitmap icon) {
+    public User(String id, String name, Bitmap icon) {
         this.id = id;
         this.name = name;
         this.icon = icon;
@@ -17,7 +17,7 @@ public class User implements IChatUser {
 
     @Override
     public String getId() {
-        return this.id.toString();
+        return this.id;
     }
 
     @Override

@@ -20,9 +20,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.prfc.Classes.AppData;
+import com.example.prfc.Classes.Board;
 import com.example.prfc.Classes.MessageList;
 import com.example.prfc.Classes.MyMessageStatusFormatter;
 import com.example.prfc.Classes.User;
+import com.example.prfc.GroupActivity.Mate;
 import com.example.prfc.R;
 import com.github.bassaer.chatmessageview.model.IChatUser;
 import com.github.bassaer.chatmessageview.model.Message;
@@ -78,10 +80,11 @@ public class MessengerActivity extends Activity {
     private ChatView mChatView;
     private MessageList mMessageList;
     private ArrayList<User> mUsers;
+    Board group;
     AppData appData;
     String groupid;
-    String userid;
-    ArrayList invitedUsers;
+    FirebaseUser user;
+    ArrayList<Mate> invitedUsers;
     Socket socket;
 
     private int mReplyDelay = -1;
@@ -93,14 +96,13 @@ public class MessengerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
 
-        groupid = getIntent().getStringExtra("groupid");
-        invitedUsers = getIntent().getStringArrayListExtra("invitedUsers");
+        group = getIntent().getParcelableExtra("group");
+        groupid = group.getId();
+        invitedUsers = group.getInvitedUsers();
+
         System.out.println("*************messengerActivity group id = "+ groupid);
-        //groupid = "20"; //For TEST
 
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        userid = user.getUid();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         initUsers();
 
@@ -179,7 +181,7 @@ public class MessengerActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                initUsers();
+                //initUsers();
 
                 //new message
                 //Toast.makeText(MessengerActivity.this, mChatView.getInputText(), Toast.LENGTH_SHORT).show();
@@ -187,13 +189,14 @@ public class MessengerActivity extends Activity {
                 JsonObject preJsonObject = new JsonObject();
                 preJsonObject.addProperty("comment", mChatView.getInputText()+"");
                 preJsonObject.addProperty("channel", groupid);
-                preJsonObject.addProperty("userid", userid);
+                preJsonObject.addProperty("userid", user.getUid());
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(preJsonObject.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                System.out.println("*************************Messenger send json :" + jsonObject);
                 socket.emit("send", jsonObject);
 
                 Message message = new Message.Builder()
@@ -215,7 +218,7 @@ public class MessengerActivity extends Activity {
                 //Reset edit text
                 mChatView.setInputText("");
 
-                //receiveMessage("Test");
+                receiveMessage("Text", "rlfdnrms@gmail.com");
 
             }
 
@@ -259,13 +262,13 @@ public class MessengerActivity extends Activity {
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
-    private void receiveMessage(String sendText) {
+    private void receiveMessage(String Text, String email) {
 
         //Receive message
         final Message receivedMessage = new Message.Builder()
-                .setUser(mUsers.get(1))
+                .setUser(findSender(email))
                 .setRight(false)
-                .setText(sendText)
+                .setText(Text)
                 .setStatusIconFormatter(new MyMessageStatusFormatter(MessengerActivity.this))
                 .setStatusTextFormatter(new MyMessageStatusFormatter(MessengerActivity.this))
                 .setStatusStyle(Message.Companion.getSTATUS_ICON())
@@ -299,7 +302,7 @@ public class MessengerActivity extends Activity {
             mChatView.send(message);
             //Add message list
             mMessageList.add(message);
-            receiveMessage(Message.Type.PICTURE.name());
+
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show();
@@ -307,24 +310,33 @@ public class MessengerActivity extends Activity {
 
     }
 
+    private User findSender(String email){
+        int i;
+
+        for(i = 0; i<mUsers.size();i++){
+            if(mUsers.get(i).getId().equals(email))
+                break;
+        }
+        //못 찾을 경우 마지막 동료가 반환됌.
+        return mUsers.get(i);
+    }
+
     private void initUsers() {
         mUsers = new ArrayList<>();
-        //User id
-        int myId = 0;
-        //User icon
-        Bitmap myIcon = BitmapFactory.decodeResource(getResources(), R.drawable.default_person_icon);
-        //User name
-        String myName = "Test";
 
-        int yourId = 1;
-        Bitmap yourIcon = BitmapFactory.decodeResource(getResources(), R.drawable.default_person_icon);
-        String yourName = "Test2";
+        String myId = user.getEmail();
+        Bitmap myIcon = BitmapFactory.decodeResource(getResources(), R.drawable.default_person_icon);
+        String myName = user.getDisplayName();
 
         final User me = new User(myId, myName, myIcon);
-        final User you = new User(yourId, yourName, yourIcon);
-
         mUsers.add(me);
-        mUsers.add(you);
+
+        Bitmap DefaultIcon = BitmapFactory.decodeResource(getResources(), R.drawable.default_person_icon);
+
+        for(int i = 0; i<invitedUsers.size();i++){
+            if(!invitedUsers.get(i).getEmail().equals(myId))
+                mUsers.add(new User(invitedUsers.get(i).getEmail(), invitedUsers.get(i).getName(), DefaultIcon));
+        }
     }
 
     /**
@@ -442,7 +454,7 @@ public class MessengerActivity extends Activity {
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
                 JsonObject preJsonObject = new JsonObject();
                 preJsonObject.addProperty("channel", groupid);
-                preJsonObject.addProperty("userid", userid);
+                preJsonObject.addProperty("userid", user.getUid());
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(preJsonObject.toString());
@@ -459,13 +471,12 @@ public class MessengerActivity extends Activity {
 
                 String uid = jsonObject2.get("userid").toString();
                 uid = uid.replace("\"","");
-                System.out.println("****************************Uid from server :" + uid+"\n local user id :" + userid);
-                if(!uid.equals(userid)) {
+                System.out.println("****************************Uid from server :" + uid+"\n local user id :" + user.getUid());
+                if(!uid.equals(user.getUid())) {
                     runOnUiThread(() -> {
-                        receiveMessage(jsonObject2.get("msg").toString());
+                        receiveMessage(jsonObject2.get("msg").toString(),"rlfdnrms@gmail.com");//이거 바꿔줘야한다.
                     });
                 }
-
 
             });
             socket.connect();
