@@ -44,9 +44,10 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
 
     private RecyclerView mMainRecyclerView;
     private GroupListAdapter mAdapter;
-    private List<Board> mBoardList = new ArrayList<>();
+    public List<Board> mBoardList = new ArrayList<>();
 
     private String username;
+    FirebaseUser user;
 
     Boolean isLookup;
     String userid;
@@ -70,7 +71,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_group);
         setTitle("Group List");
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();//구글 로그인은 이렇게 유저 네임 받는거 가능, 이메일 로그인은 setname할떄 db에 저장한다음에 거기서 읽어와야됨
         userid = user.getUid();
 
@@ -161,10 +162,11 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         ArrayList invitedUsers = new ArrayList();
         ArrayList invitedUserList = new ArrayList();
         ArrayList result = new ArrayList();
+        parsedItems = new ArrayList();
 
         try {
             JSONArray jsonArray = new JSONArray(receivedData);
-
+            System.out.println("*****************************Look up receivedData :" + receivedData);
             JSONObject jsonObject;
             JSONObject groupinfo;
             JSONArray mates;
@@ -185,7 +187,8 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
                 JSONObject mate;
                 for(int j = 0; j< mates.length(); j++){
                     mate = mates.getJSONObject(j);
-                    invitedUsers.add(new Mate(mate.getString("name"), mate.getString("email")));
+                    if(!mate.getString("email").equals(user.getEmail()))
+                        invitedUsers.add(new Mate(mate.getString("name"), mate.getString("email")));
                 }
 
                 parsedItems.add(hashMap);
@@ -315,7 +318,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
                 parsed = parsing(result);
                 parsedItems = (ArrayList<HashMap<String, String>>)parsed.get(0);
                 invitedUserList = (ArrayList)parsed.get(1);
-
+                mBoardList = new ArrayList<>();
                 for (int i = 0; i < parsedItems.size(); i++) {
                     item = parsedItems.get(i);
                     mBoardList.add(new Board(item.get("groupid"), item.get("groupname"), item.get("grouparea"), username, (ArrayList)invitedUserList.get(i)));//일단 유저 이름.
@@ -394,6 +397,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.setRequestProperty("Accept", "application/json");
                 httpURLConnection.connect();
 
                 responseStatusCode = httpURLConnection.getResponseCode();

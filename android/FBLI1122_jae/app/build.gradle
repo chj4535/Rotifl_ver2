@@ -63,6 +63,10 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.3.1'
     implementation 'com.google.firebase:firebase-invites:16.0.5'
     implementation group: 'io.socket', name: 'socket.io-client', version: '1.0.0'
+
+    //calendar
+    implementation 'com.github.alamkanak:android-week-view:1.2.6'
+    implementation 'com.squareup.retrofit:retrofit:1.9.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -189,7 +189,7 @@ public class MessengerActivity extends Activity {
                 JsonObject preJsonObject = new JsonObject();
                 preJsonObject.addProperty("comment", mChatView.getInputText()+"");
                 preJsonObject.addProperty("channel", groupid);
-                preJsonObject.addProperty("userid", user.getUid());
+                preJsonObject.addProperty("email", user.getEmail());
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(preJsonObject.toString());
@@ -231,22 +231,6 @@ public class MessengerActivity extends Activity {
                 showDialog();
             }
         });
-    }
-    public JSONObject makeJSONObject(String sendMessage, String groupid) {
-
-        JSONObject jsonObject = new JSONObject();
-
-        try {
-            jsonObject.put("comment", sendMessage);
-            jsonObject.put("groupid", groupid);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("************json test" + jsonObject.toString());
-
-        return jsonObject;
     }
 
     private void openGallery() {
@@ -469,12 +453,13 @@ public class MessengerActivity extends Activity {
                 JsonObject jsonObject2 = (JsonObject) jsonObject.getAsJsonObject("comment");
                 //JsonObject jsonObject3 = (JsonObject) jsonObject.getAsJsonObject("userid");
 
-                String uid = jsonObject2.get("userid").toString();
-                uid = uid.replace("\"","");
-                System.out.println("****************************Uid from server :" + uid+"\n local user id :" + user.getUid());
-                if(!uid.equals(user.getUid())) {
+                String email = jsonObject2.get("email").toString();
+                email = email.replace("\"","");
+                System.out.println("****************************Uid from server :" + email+"\n local user id :" + user.getEmail());
+                if(!email.equals(user.getEmail())) {
+                    String finalEmail = email;
                     runOnUiThread(() -> {
-                        receiveMessage(jsonObject2.get("msg").toString(),"rlfdnrms@gmail.com");//이거 바꿔줘야한다.
+                        receiveMessage(jsonObject2.get("msg").toString(), finalEmail);//이거 바꿔줘야한다. json 에서 email 뽑아서 넣어준다.
                     });
                 }
 

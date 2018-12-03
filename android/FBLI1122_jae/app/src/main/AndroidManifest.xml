@@ -47,10 +47,12 @@
         <activity android:name=".ChattingActivity.MessengerActivity" />
         <!--
         <activity android:name=".Classes.list_item" />
-        <activity android:name=".Classes.MyListAdpater" />-->
+        <activity android:name=".Classes.MyListAdpater" />
+        -->
         <activity android:name=".CommunityActivity.BoardDetailActivity" />
         <activity android:name=".CommunityActivity.BoardPostActivity" />
         <activity android:name=".BudgetActivity.GroupBudgetActivity" />
+        <activity android:name=".CalendarActivity.CalendarActivity"></activity>
     </application>
 
 </manifest>

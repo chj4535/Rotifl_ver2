@@ -41,7 +41,7 @@ public class MakeGroupActivity extends Activity {
     EditText endDate;
     EditText email;
 
-
+    FirebaseUser user;
     String groupid;
     String userid;
     String name;
@@ -60,7 +60,7 @@ public class MakeGroupActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_group);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         userid = user.getUid();
 
         setTitle("그룹 생성");
@@ -127,7 +127,10 @@ public class MakeGroupActivity extends Activity {
 
                 emailObject.put("email", emails.get(i));
                 jsonArray.put(emailObject);
+                emailObject = new JSONObject();
             }
+            emailObject.put("email",user.getEmail());//자기 이메일 추가
+            jsonArray.put(emailObject);
 
             result.put("groupinfo", jsonObject);
             result.put("invitedUsers", jsonArray);
@@ -136,7 +139,7 @@ public class MakeGroupActivity extends Activity {
             e.printStackTrace();
         }
 
-        System.out.println("************json test" + result.toString());
+        System.out.println("************Make group request json test" + result.toString());
 
         return result;
     }
@@ -189,10 +192,14 @@ public class MakeGroupActivity extends Activity {
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setRequestProperty("Content-Type", "application/json");
+                httpURLConnection.setDoOutput(true);
+
                 httpURLConnection.connect();
 
+
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(makeJSONObject().toString().getBytes("UTF-8"));
+                outputStream.write(makeJSONObject().toString().getBytes("UTF-8"));// 여기서 json 이상하게됌
 
                 outputStream.flush();
                 outputStream.close();

@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.prfc.CalendarActivity.CalendarActivity;
 import com.example.prfc.CommunityActivity.CommunityActivity;
 import com.example.prfc.GroupActivity.GroupActivity;
 import com.example.prfc.R;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private String name = "";
 
+    private Button calenderTest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +49,16 @@ public class MainActivity extends AppCompatActivity {
         email = (TextView)findViewById(R.id.useremail);
         uname = (TextView)findViewById(R.id.username);
         groupMain = (Button)findViewById(R.id.groupmain);
-
         community = (Button)findViewById(R.id.community);
+
+        calenderTest = (Button)findViewById(R.id.calendar_test_btn);
+        calenderTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
