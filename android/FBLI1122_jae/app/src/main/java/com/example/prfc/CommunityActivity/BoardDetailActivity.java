@@ -47,7 +47,7 @@ public class BoardDetailActivity extends AppCompatActivity {
     ImageView mImgTrans;
     Bitmap mBitmap;
 
-    String URL = "https://t1.daumcdn.net/cfile/tistory/212DAC4C553978792D";
+    String URL = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +61,8 @@ public class BoardDetailActivity extends AppCompatActivity {
         BoardTitle.setText("제목:"+intent.getStringExtra("title"));
         ath.setText("작성자 : "+intent.getStringExtra("user"));
         body.setText(intent.getStringExtra("content"));
-
+        URL = intent.getStringExtra("image");
+        System.out.println(URL+"*************************************************");
         mImgTrans = (ImageView) findViewById(R.id.imgTranslate);
 
         new LoadImage().execute(URL);

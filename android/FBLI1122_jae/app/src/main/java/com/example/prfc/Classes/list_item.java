@@ -14,6 +14,7 @@ public class list_item {
     private String content ;
     private String comment ;
     private RelativeLayout relativeLayout;
+    private String image;
 
     public int getProfile_image() {
         return profile_image;
@@ -95,7 +96,7 @@ public class list_item {
     public list_item(int profile_image, Date write_date,
                      String bordid,
                      String title, String user,
-                     String content) {
+                     String content, String image) {
         this.profile_image = profile_image;
         this.write_date = write_date;
         this._id = _id;
@@ -104,6 +105,15 @@ public class list_item {
         this.user=user;
 //        this.comment =comment;
         this.content = content;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 //    public list_item(int profile_image, Date write_date,

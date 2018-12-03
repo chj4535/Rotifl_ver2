@@ -99,6 +99,7 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
                 intent.putExtra("title", list_itemArrayList.get(position).getTitle());
                 intent.putExtra("content", list_itemArrayList.get(position).getContent());
                 intent.putExtra("user", list_itemArrayList.get(position).getUser());
+                intent.putExtra("image", list_itemArrayList.get(position).getImage());
                 startActivity(intent);
 //                Toast.makeText(getApplicationContext(), "터치인식", Toast.LENGTH_LONG).show();
 
@@ -136,6 +137,7 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
                 hashMap.put("title", item.getString("title"));
                 hashMap.put("user", item.getString("user"));
                 hashMap.put("content", item.getString("content"));
+                hashMap.put("image", item.getString("image"));
 //                hashMap.put("comment", item.getString("comment"));
                 parsedItems.add(hashMap);
             }
@@ -202,7 +204,8 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
                                 (String)MAP.get(k).get("boardid"),
                                 (String)MAP.get(k).get("title"),
                                 (String)MAP.get(k).get("user"),
-                                (String)MAP.get(k).get("content").substring(0,1)));
+                                (String)MAP.get(k).get("content").substring(0,1),
+                (String)MAP.get(k).get("image")));
 //                                (String)MAP.get(k).get("comment")));
             }
             myListAdapter = new MyListAdpater(CommunityActivity.this, list_itemArrayList);

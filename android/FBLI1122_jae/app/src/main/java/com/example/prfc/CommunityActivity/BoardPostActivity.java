@@ -75,12 +75,15 @@ public class BoardPostActivity extends AppCompatActivity{
         btn_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new PostTask().execute();
 //                base64_string = getStringFromBitmap(imageview.getDrawingCache());
                 new Thread() {
                     public void run() {
                         doFileUpload();
                     }
                 }.start();
+                startActivity(new Intent(BoardPostActivity.this,CommunityActivity.class));
+
             }
         });
         Btn_select.setOnClickListener(new View.OnClickListener(){
@@ -139,7 +142,7 @@ public class BoardPostActivity extends AppCompatActivity{
     //데이터 포맷만들어서 보내기
     public String connPOST(String serverURL, String... params){
 
-        String baseURL = "http://13.209.15.179:50000/";
+        String baseURL = "http://13.209.15.179:50000/down/";
         JSONObject jsonObject = new JSONObject();
         int responseStatusCode;
 
@@ -148,6 +151,7 @@ public class BoardPostActivity extends AppCompatActivity{
             jsonObject.put("title",title.getText().toString());
             jsonObject.put("userid",user.getUid());
             jsonObject.put("content",content.getText().toString());
+            jsonObject.put("image",baseURL+imgName);
 
             URL url = new URL(serverURL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
