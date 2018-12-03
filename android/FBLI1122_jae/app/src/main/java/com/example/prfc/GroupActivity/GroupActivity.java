@@ -303,7 +303,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
             //if(result == "ERROR")
 
             Toast.makeText(GroupActivity.this, result, Toast.LENGTH_SHORT).show();
-
+            System.out.println("*************************Group lookup result");
 
             if(result.equals("Error: Failed to connect to /13.209.15.179:50000"))
             {

@@ -218,7 +218,7 @@ public class MessengerActivity extends Activity {
                 //Reset edit text
                 mChatView.setInputText("");
 
-                receiveMessage("Text", "rlfdnrms@gmail.com");
+                //receiveMessage("Text", "rlfdnrms@gmail.com");
 
             }
 
@@ -248,9 +248,10 @@ public class MessengerActivity extends Activity {
 
     private void receiveMessage(String Text, String email) {
 
+        System.out.println("**********************sender email :" + findSender(email.replace("\"","")).getName());
         //Receive message
         final Message receivedMessage = new Message.Builder()
-                .setUser(findSender(email))
+                .setUser(findSender(email.replace("\"","")))
                 .setRight(false)
                 .setText(Text)
                 .setStatusIconFormatter(new MyMessageStatusFormatter(MessengerActivity.this))
@@ -298,8 +299,10 @@ public class MessengerActivity extends Activity {
         int i;
 
         for(i = 0; i<mUsers.size();i++){
-            if(mUsers.get(i).getId().equals(email))
+            if(mUsers.get(i).getId().equals(email)){
+                System.out.println("********find sender :"+mUsers.get(i).getId());
                 break;
+            }
         }
         //못 찾을 경우 마지막 동료가 반환됌.
         return mUsers.get(i);
@@ -320,6 +323,9 @@ public class MessengerActivity extends Activity {
         for(int i = 0; i<invitedUsers.size();i++){
             if(!invitedUsers.get(i).getEmail().equals(myId))
                 mUsers.add(new User(invitedUsers.get(i).getEmail(), invitedUsers.get(i).getName(), DefaultIcon));
+        }
+        for(int i = 0; i<mUsers.size();i++) {
+            System.out.println("******************User :" + mUsers.get(i).getId());
         }
     }
 
@@ -360,7 +366,7 @@ public class MessengerActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        initUsers();
+        //initUsers();
     }
 
     @Override
@@ -459,7 +465,7 @@ public class MessengerActivity extends Activity {
                 if(!email.equals(user.getEmail())) {
                     String finalEmail = email;
                     runOnUiThread(() -> {
-                        receiveMessage(jsonObject2.get("msg").toString(), finalEmail);//이거 바꿔줘야한다. json 에서 email 뽑아서 넣어준다.
+                        receiveMessage(jsonObject2.get("msg").toString().replace("\"",""), finalEmail);//이거 바꿔줘야한다. json 에서 email 뽑아서 넣어준다.
                     });
                 }
 
