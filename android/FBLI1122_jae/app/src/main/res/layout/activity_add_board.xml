@@ -27,14 +27,6 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/contentInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="내용" />
-
-                <EditText
                     android:id="@+id/titleInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -43,12 +35,12 @@
                     android:text="제목" />
 
                 <EditText
-                    android:id="@+id/debug"
+                    android:id="@+id/contentInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="제목" />
+                    android:text="내용" />
 
                 <ImageView
                     android:id="@+id/imageInput"

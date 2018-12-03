@@ -230,8 +230,6 @@ public class BoardPostActivity extends AppCompatActivity{
 
         imgPath = cursor.getString(column_index);
         imgName = imgPath.substring(imgPath.lastIndexOf("/")+1);
-        EditText t = (EditText)findViewById(R.id.debug);
-        t.setText(imgName + "||" + imgPath);
 
         return imgName;
     }

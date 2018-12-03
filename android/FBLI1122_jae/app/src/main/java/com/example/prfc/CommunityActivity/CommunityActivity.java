@@ -196,16 +196,23 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
             System.out.println(s+"*************");
             MAP = parsing(s);
 
+
             for (int k=0; k< MAP.size(); k++)
             {
+                int leng = MAP.get(k).get("content").length();
+                String ext ="";
+                if(leng>7) {
+                    leng = 7;
+                    ext = "...";
+                }
                 list_itemArrayList.add(
                         new list_item(R.mipmap.ic_launcher,
                                 new Date(),
                                 (String)MAP.get(k).get("boardid"),
                                 (String)MAP.get(k).get("title"),
                                 (String)MAP.get(k).get("user"),
-                                (String)MAP.get(k).get("content").substring(0,1),
-                (String)MAP.get(k).get("image")));
+                                (String)MAP.get(k).get("content").substring(0, leng)+ext,
+                                (String)MAP.get(k).get("image")));
 //                                (String)MAP.get(k).get("comment")));
             }
             myListAdapter = new MyListAdpater(CommunityActivity.this, list_itemArrayList);
