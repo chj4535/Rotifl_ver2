@@ -93,11 +93,10 @@ public class list_item {
     }
 
 
-    public list_item(int profile_image, Date write_date,
+    public list_item(Date write_date,
                      String bordid,
                      String title, String user,
                      String content, String image) {
-        this.profile_image = profile_image;
         this.write_date = write_date;
         this._id = _id;
         this.boardid = bordid;

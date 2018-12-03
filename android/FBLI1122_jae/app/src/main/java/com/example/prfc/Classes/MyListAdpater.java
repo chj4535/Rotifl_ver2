@@ -49,16 +49,14 @@ public class MyListAdpater extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.item,null);
             nickname_textView = (TextView)convertView.findViewById(R.id.nickname_textview);
             content_textView = (TextView)convertView.findViewById(R.id.content_textview);
-            date_textView = (TextView)convertView.findViewById(R.id.date_textview);
+            date_textView = (TextView)convertView.findViewById(R.id.dateText);
             title_textView  =(TextView)convertView.findViewById(R.id.title_textview);
-            profile_imageView = (ImageView)convertView.findViewById(R.id.imageView);
             relativeLayout = (RelativeLayout)convertView.findViewById(R.id.relativeLayout);
         }
         nickname_textView.setText(this.list_itemArrayList.get(position).getUser());
         title_textView.setText(this.list_itemArrayList.get(position).getTitle());
         content_textView.setText(this.list_itemArrayList.get(position).getContent());
         date_textView.setText(this.list_itemArrayList.get(position).getWrite_date().toString());
-        profile_imageView.setImageResource(this.list_itemArrayList.get(position).getProfile_image());
         return convertView;
     }
 }

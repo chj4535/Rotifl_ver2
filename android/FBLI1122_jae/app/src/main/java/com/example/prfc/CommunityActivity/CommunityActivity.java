@@ -206,7 +206,7 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
                     ext = "...";
                 }
                 list_itemArrayList.add(
-                        new list_item(R.mipmap.ic_launcher,
+                        new list_item(
                                 new Date(),
                                 (String)MAP.get(k).get("boardid"),
                                 (String)MAP.get(k).get("title"),
