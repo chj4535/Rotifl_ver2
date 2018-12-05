@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseAuth auth;
     private String name = "";
+    private String tuserid, tusername, temail;
 
     private Button calenderTest;
 
@@ -84,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
                         Connection connection = new Connection();
                         connection.execute();
                         uname.setText(name);
+
+                        tuserid = user.getUid();
+                        tusername = user.getDisplayName();
+                        temail = user.getEmail();
                     }
                 }
             }
@@ -232,6 +237,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Connection connection = new Connection();
                 connection.execute();
+
+                tuserid = user.getUid();
+                tusername = user.getDisplayName();
+                temail = user.getEmail();
             }else if(resultCode == RESULT_CANCELED){
                 Toast.makeText(getApplicationContext(), "YOU MUST SET YOUR NAME", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, SetNameActivity.class);
@@ -244,9 +253,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("userid", user.getUid());
-            jsonObject.put("username", user.getDisplayName());
-            jsonObject.put("email", user.getEmail());
+            jsonObject.put("userid", tuserid);
+            jsonObject.put("username", tusername);
+            jsonObject.put("email", temail);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -291,8 +300,6 @@ public class MainActivity extends AppCompatActivity {
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setRequestProperty("Content-Type", "application/json");
-                httpURLConnection.setRequestProperty("Accept", "application/json");
                 httpURLConnection.connect();
 
 
@@ -354,8 +361,6 @@ public class MainActivity extends AppCompatActivity {
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.setRequestMethod("DELETE");
-                httpURLConnection.setRequestProperty("Content-Type", "application/json");
-                httpURLConnection.setRequestProperty("Accept", "application/json");
                 httpURLConnection.connect();
 
 
