@@ -1,20 +1,21 @@
 package com.example.prfc.Classes;
 
+import android.net.Uri;
 import android.widget.ImageView;
 
 public class ImageList {
-    private ImageView image;
+    private Uri uri;
     private String name;
 
     public ImageList() {
     }
 
-    public ImageView getImage() {
-        return image;
+    public Uri getUri() {
+        return uri;
     }
 
-    public void setItem(ImageView image) {
-        this.image = image;
+    public void setUri(Uri uri) {
+        this.uri = uri;
     }
 
     public String getName() { return name; }
@@ -23,8 +24,8 @@ public class ImageList {
         this.name = name;
     }
 
-    public ImageList(ImageView image, String name) {
-        this.image = image;
+    public ImageList(Uri uri, String name) {
+        this.uri = uri;
         this.name = name;
     }
 }

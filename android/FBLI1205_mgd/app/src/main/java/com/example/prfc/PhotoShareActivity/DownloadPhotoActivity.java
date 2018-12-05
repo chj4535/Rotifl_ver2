@@ -2,6 +2,7 @@ package com.example.prfc.PhotoShareActivity;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,11 +17,16 @@ import android.widget.TextView;
 
 import com.example.prfc.Classes.ImageList;
 import com.example.prfc.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,22 +34,48 @@ import java.util.List;
 public class DownloadPhotoActivity extends AppCompatActivity {
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference strpath = ref.child("images").child("groupname").child("images");
+    private FirebaseStorage storage;
     private ImageListAdapter mAdapter;
     private List<ImageList> mBoardList = new ArrayList<>();
+    private StorageReference storageReference;
+    private RecyclerView mMainRecyclerView;
+    //private ArrayList<String> path = new ArrayList<>();;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download_photo);
 
-        ArrayList<String> path = new ArrayList<>();
+        mMainRecyclerView = findViewById(R.id.image_list_view);
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
         strpath.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){
 
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
                     String pth = d.getKey();
+                    StorageReference ref = storageReference.child("images").child(pth);
                     Log.d("asdasd", "dbreadres = " + pth);
-                    path.add(pth);
+
+                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            // Got the download URL for 'users/me/profile.png'
+                            mBoardList.add(new ImageList(uri, pth));
+                            mAdapter = new ImageListAdapter(mBoardList);
+                            mMainRecyclerView.setAdapter(mAdapter);
+                            Log.d("asdasd", "dbreadres = " + uri.toString());
+                            Log.d("asdasd", "dbreadres size= " + mBoardList.size());
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                        }
+                    });
+
                 }
             }
 
@@ -52,14 +84,7 @@ public class DownloadPhotoActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
-
-
-
-
-
 
     private class ImageListAdapter extends RecyclerView.Adapter <ImageListAdapter.GroupListViewHolder> {
 
@@ -80,13 +105,13 @@ public class DownloadPhotoActivity extends AppCompatActivity {
         public GroupListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
             // 버튼눌렀을때 추가 되는 박스
-            return new GroupListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_price,parent,false));
+            return new GroupListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.image_view,parent,false));
         }
 
         @Override
         public void onBindViewHolder(@NonNull GroupListViewHolder holder, int position) {
             ImageList data = mBoardList.get(position);
-            //holder.mImageView.setImageURI(data.getImage());
+            holder.mImageView.setImageURI(data.getUri());
             holder.mNameView.setText(data.getName());
         }
 
@@ -127,7 +152,7 @@ public class DownloadPhotoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){ //클릭됐을때 수정하도록 함.
             }
-        } // 어댑터를 통해서 무엇을 보낼건지
+        }
 
     }
 }
