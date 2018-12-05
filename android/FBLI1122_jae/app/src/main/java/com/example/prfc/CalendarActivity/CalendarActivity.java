@@ -1,8 +1,10 @@
 package com.example.prfc.CalendarActivity;
 
+import android.support.design.widget.FloatingActionButton;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekViewEvent;
+import com.example.prfc.CalendarActivity.dummy.DummyContent;
 import com.example.prfc.R;
 
 import java.util.ArrayList;
@@ -14,11 +16,12 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class CalendarActivity extends BaseActivity implements Callback<List<Event>> {
+public class CalendarActivity extends BaseActivity implements Callback<List<Event>>, CardFragment.OnListFragmentInteractionListener {
 
 
     private List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
     boolean calledNetwork = false;
+
 
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
@@ -70,4 +73,8 @@ public class CalendarActivity extends BaseActivity implements Callback<List<Even
         Toast.makeText(this, R.string.async_error, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
+    }
 }

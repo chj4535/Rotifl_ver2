@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CalendarActivity.BaseActivity">
+
 
     <com.alamkanak.weekview.WeekView
         android:id="@+id/weekView"
@@ -24,4 +27,14 @@
         app:headerColumnBackground="#ffffffff"
         app:todayHeaderTextColor="@color/accent" />
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/calendar_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:backgroundTint="#9ea8de"
+        android:src="@drawable/ic_edit"
+        android:layout_margin="8dp" />
+
+</RelativeLayout>
