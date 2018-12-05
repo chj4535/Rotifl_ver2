@@ -1,8 +1,11 @@
 package com.example.prfc.PhotoShareActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +31,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +55,7 @@ public class DownloadPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download_photo);
 
-        mMainRecyclerView = findViewById(R.id.image_list_view);
+        mMainRecyclerView = findViewById(R.id.image_recycler_view);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
@@ -110,9 +119,20 @@ public class DownloadPhotoActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull GroupListViewHolder holder, int position) {
-            ImageList data = mBoardList.get(position);
-            holder.mImageView.setImageURI(data.getUri());
-            holder.mNameView.setText(data.getName());
+            new Thread(){
+                public void run(){
+                    ImageList data = mBoardList.get(position);
+                    try {
+                        Log.d("vvvv", "inasdasd error = " + data.getUri());
+                        URL  url = new URL(data.getUri().toString());
+                        Bitmap bitmap = BitmapFactory.decodeStream(url.openStream());
+                        holder.mImageView.setImageBitmap(bitmap);
+                    }catch (Exception e){
+                        Log.d("vvvv", "inasdasd error = " + e);
+                    }
+                    holder.mNameView.setText(data.getName());
+                }
+            }.start();
         }
 
 
