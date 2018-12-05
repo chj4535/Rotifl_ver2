@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhotoShareActivity.PhotoMainActivity">
+
+    <Button
+        android:id="@+id/btnchupload"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="160dp"
+        android:text="선택후 업로드"/>
+
+    <Button
+        android:id="@+id/btntpupload"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btnchupload"
+        android:layout_marginEnd="60dp"
+        android:text="촬영후 업로드"/>
+
+    <Button
+        android:id="@+id/btndownload"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/btnchupload"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:text="사진 다운로드" />
+
+</RelativeLayout>
