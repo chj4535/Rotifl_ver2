@@ -11,6 +11,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="55dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/showifnull"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textSize="30dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/dirviewer"
+        android:gravity="left"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="60dp"
+        android:textSize="18dp"/>
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="60dp"
+        android:id="@+id/setpath"
+        android:layout_height="60dp"
+        android:text="경로설정"/>
+
+    <TextView
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="저장경로"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
 </RelativeLayout>

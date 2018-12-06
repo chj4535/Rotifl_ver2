@@ -60,8 +60,7 @@ public class SetgBudgetActivity extends Activity {
                 finish();
                 // ...
             }
-        })
-                .addOnFailureListener(new OnFailureListener() {
+        }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Write failed

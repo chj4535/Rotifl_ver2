@@ -42,10 +42,12 @@
         <activity
             android:name=".BudgetActivity.ApplygSpentActivity"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".BudgetActivity.SetmBudgetActivity"
-            android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".BudgetActivity.EditSpentListActivity"
-            android:theme="@android:style/Theme.Dialog"/>
+        <activity
+            android:name=".BudgetActivity.SetmBudgetActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".BudgetActivity.EditSpentListActivity"
+            android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name=".GroupActivity.GroupItemPopupActivity"
             android:theme="@android:style/Theme.Dialog" />
@@ -58,15 +60,18 @@
         <activity android:name=".CommunityActivity.BoardPostActivity" />
         <activity android:name=".BudgetActivity.GroupBudgetActivity" />
         <activity android:name=".CalendarActivity.CalendarActivity" />
-        <activity android:name=".BudgetActivity.ApplySpentActivity"
-            android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".BudgetActivity.EditDutchActivity"
-            android:theme="@android:style/Theme.Dialog"/>
+        <activity
+            android:name=".BudgetActivity.ApplySpentActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".BudgetActivity.EditDutchActivity"
+            android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".BudgetActivity.CalculateActivity" />
         <activity android:name=".PhotoShareActivity.DownloadPhotoActivity" />
         <activity android:name=".PhotoShareActivity.PhotoCamShareActivity" />
         <activity android:name=".PhotoShareActivity.PhotoMainActivity" />
-        <activity android:name=".PhotoShareActivity.PhotoShareActivity"></activity>
+        <activity android:name=".PhotoShareActivity.PhotoShareActivity" />
+        <activity android:name=".PhotoShareActivity.InformActivity"></activity>
     </application>
 
 </manifest>
