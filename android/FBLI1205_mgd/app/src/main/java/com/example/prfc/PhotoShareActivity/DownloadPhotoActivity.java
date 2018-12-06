@@ -61,11 +61,9 @@ public class DownloadPhotoActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private RecyclerView mMainRecyclerView;
     private Bitmap bitmap;
-    private String DIR = "";
+    private String DIR;
     private String userid;;
     private ArrayList<String> path = new ArrayList<>();;
-    private DatabaseReference dir;
-    private Button setdir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +71,6 @@ public class DownloadPhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_download_photo);
 
         userid = FirebaseAuth.getInstance().getUid();
-        dir = ref.child(userid).child("dir");
         ifnull = findViewById(R.id.showifnull);
         mMainRecyclerView = findViewById(R.id.image_recycler_view);
         storage = FirebaseStorage.getInstance();
@@ -81,8 +78,9 @@ public class DownloadPhotoActivity extends AppCompatActivity {
         mAdapter = new ImageListAdapter(mBoardList);
         mMainRecyclerView.setAdapter(mAdapter);
         dirview = (TextView)findViewById(R.id.dirviewer);
-        setdir = (Button)findViewById(R.id.setpath);
+        DIR = Environment.getExternalStorageDirectory().toString();
 
+        dirview.setText(DIR + "/" + "groupname");
         verifyStoragePermissions(DownloadPhotoActivity.this);
 
         strpath.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -120,59 +118,6 @@ public class DownloadPhotoActivity extends AppCompatActivity {
 
             }
         });
-
-        dir.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String directory = dataSnapshot.getValue(String.class);
-                if(directory!=null && directory!=""){
-                    DIR = directory;
-                    dirview.setText(DIR);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        setdir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-                intent.addCategory(Intent.CATEGORY_DEFAULT);
-                startActivityForResult(Intent.createChooser(intent, "Choose directory"), 9999);
-            }
-        });
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 9999){
-            try{
-                Uri uri = data.getData();
-                DIR = uri.toString();
-                DIR = (new File(DIR).getAbsolutePath());
-            }catch(Exception e) {
-                Toast.makeText(getApplicationContext(), "inasdasd path = " + e, Toast.LENGTH_SHORT).show();
-            }
-
-            dir.setValue(DIR).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    // Write was successful!
-                    Toast.makeText(getApplicationContext(), "dbupdate = " + "success", Toast.LENGTH_SHORT).show();
-                    // ...
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    // Write failed
-                    Toast.makeText(getApplicationContext(), "dbupdate = " + "failed", Toast.LENGTH_SHORT).show();
-                    // ...
-                }
-            });
-        }
     }
 
     private class ImageListAdapter extends RecyclerView.Adapter <ImageListAdapter.GroupListViewHolder> {
@@ -298,12 +243,7 @@ public class DownloadPhotoActivity extends AppCompatActivity {
             StorageReference downloadRef = storageRef.child("images").child(data.getName());
             //Log.d("vvvv", "inasdasd download ref = " + downloadRef.toString());
             try{
-                String res = DIR;
-                String result[] = res.split("content:/");
-
-                Log.d("vvvv", "inasdasd error = " + result[1]);
-
-                File rootPath = new File(Environment.getExternalStorageDirectory(), "groupname");
+                File rootPath = new File(DIR, "groupname");
                 if(!rootPath.exists()) {
                     rootPath.mkdirs();
                 }
@@ -311,12 +251,10 @@ public class DownloadPhotoActivity extends AppCompatActivity {
 
                 Log.d("vvvv", "inasdasd rootpath = " + rootPath.getAbsolutePath());
                 fileNameOnDevice.createNewFile();
-                Log.d("vvvv", "inasdasd error = abb");
-                //Log.d("vvvv", "inasdasd filename = " + fileNameOnDevice);
                 downloadRef.getFile(fileNameOnDevice).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot task) {
-                        Log.d("vvvv", "inasdasd error = acc");
+                        Toast.makeText(getApplicationContext(), "File Downloaded", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {

@@ -25,23 +25,16 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:id="@+id/dirviewer"
         android:gravity="left"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="50dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="11dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="0dp"
         android:textSize="18dp"/>
-
-    <Button
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_width="60dp"
-        android:id="@+id/setpath"
-        android:layout_height="60dp"
-        android:text="경로설정"/>
 
     <TextView
         android:layout_width="40dp"
