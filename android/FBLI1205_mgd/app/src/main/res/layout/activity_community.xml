@@ -6,9 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".CommunityActivity.CommunityActivity">
 
-    <ListView
-        android:id="@+id/list_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="23dp"
+            android:text="Button"
+            tools:layout_editor_absoluteX="268dp"
+            tools:layout_editor_absoluteY="447dp" />
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

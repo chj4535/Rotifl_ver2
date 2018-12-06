@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textAlignment="viewStart"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
@@ -28,15 +28,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textSize="24sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/BoardBody"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="186dp"
             android:text="TextView"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/imgTranslate"

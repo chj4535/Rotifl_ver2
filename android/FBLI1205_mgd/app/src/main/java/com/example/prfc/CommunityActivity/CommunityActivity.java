@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Button;
 
 import com.example.prfc.Classes.MyListAdpater;
 import com.example.prfc.Classes.list_item;
@@ -35,14 +36,14 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
     ArrayList<list_item> list_itemArrayList;
     HashMap<String, String> item;
     ArrayList<HashMap<String, String>> MAP;
-
+    Button eddit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community);
         listView = (ListView) findViewById(R.id.list_view);
-
+        eddit = (Button)findViewById(R.id.edit);
         list_itemArrayList = new ArrayList<list_item>();
         MAP = new ArrayList<HashMap<String, String>>();
         try{
@@ -52,7 +53,7 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
 
         }
 
-        //여기부터======================================================
+//        //여기부터======================================================
 //        list_itemArrayList.add(
 //                new list_item(R.mipmap.ic_launcher,
 //                        new Date(),
@@ -81,11 +82,16 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
 //                        "content3",
 //                        "comment3"));
 //
-//        myListAdapter = new MyListAdpater(MainActivity.this, list_itemArrayList);
+//        myListAdapter = new MyListAdpater(CommunityActivity.this, list_itemArrayList);
 //            listView.setAdapter(myListAdapter);
-
-        //여기까지=====================================================
-
+//
+//        //여기까지=====================================================
+        eddit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CommunityActivity.this, BoardPostActivity.class));
+            }
+        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -93,6 +99,7 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
                 intent.putExtra("title", list_itemArrayList.get(position).getTitle());
                 intent.putExtra("content", list_itemArrayList.get(position).getContent());
                 intent.putExtra("user", list_itemArrayList.get(position).getUser());
+                intent.putExtra("image", list_itemArrayList.get(position).getImage());
                 startActivity(intent);
 //                Toast.makeText(getApplicationContext(), "터치인식", Toast.LENGTH_LONG).show();
 
@@ -125,12 +132,13 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
                 JSONObject item = jsonArray.getJSONObject(i);
                 hashMap = new HashMap<>();//초기화
 
-                hashMap.put("_id", i+"번째유저");//item.getString("_id")
+//                hashMap.put("_id", i+"번째유저");//item.getString("_id")
                 hashMap.put("boardid", item.getString("boardid"));
                 hashMap.put("title", item.getString("title"));
                 hashMap.put("user", item.getString("user"));
                 hashMap.put("content", item.getString("content"));
-                hashMap.put("comment", item.getString("comment"));
+                hashMap.put("image", item.getString("image"));
+//                hashMap.put("comment", item.getString("comment"));
                 parsedItems.add(hashMap);
             }
 
@@ -188,17 +196,24 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
             System.out.println(s+"*************");
             MAP = parsing(s);
 
+
             for (int k=0; k< MAP.size(); k++)
             {
+                int leng = MAP.get(k).get("content").length();
+                String ext ="";
+                if(leng>7) {
+                    leng = 7;
+                    ext = "...";
+                }
                 list_itemArrayList.add(
-                        new list_item(R.mipmap.ic_launcher,
+                        new list_item(
                                 new Date(),
-                                (String)MAP.get(k).get("_id"),
                                 (String)MAP.get(k).get("boardid"),
                                 (String)MAP.get(k).get("title"),
                                 (String)MAP.get(k).get("user"),
-                                (String)MAP.get(k).get("content"),
-                                (String)MAP.get(k).get("comment")));
+                                (String)MAP.get(k).get("content").substring(0, leng)+ext,
+                                (String)MAP.get(k).get("image")));
+//                                (String)MAP.get(k).get("comment")));
             }
             myListAdapter = new MyListAdpater(CommunityActivity.this, list_itemArrayList);
             listView.setAdapter(myListAdapter);
