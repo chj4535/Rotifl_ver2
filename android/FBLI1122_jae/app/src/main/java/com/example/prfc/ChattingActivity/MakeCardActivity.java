@@ -54,6 +54,7 @@ public class MakeCardActivity extends Activity{
         addBtn = (Button)findViewById(R.id.make_card_add_btn);
 
         //edComment는 인텐트로 받아서 처리
+        edComment.setText(getIntent().getStringExtra("content"));
 
         txtDay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +112,7 @@ public class MakeCardActivity extends Activity{
             }
         });
 
+        //여기서 서버로 전송.
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

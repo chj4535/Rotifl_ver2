@@ -118,15 +118,17 @@ public class MessengerActivity extends Activity {
             Toast.makeText(this, "인터넷 연결 안됌", Toast.LENGTH_SHORT).show();
         }
 
+        //카드 생성
         mChatView.getMessageView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                     Message message = (Message)adapterView.getItemAtPosition(position);
-                    Toast.makeText(MessengerActivity.this, " position" + position + " comment : "+message.getText(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MessengerActivity.this, MakeCardActivity.class);
+                    intent.putExtra("content", message.getText());
+                    startActivity(intent);
 
-                    hideKeyboard();
                 return false;
             }
         });
