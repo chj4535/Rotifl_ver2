@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme"
+        parent="Theme.AppCompat.Light">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:statusBarColor">#000000</item>
+        <!--액션바 경계 지우기-->
+    </style>
+    <!-- ActionBar styles -->
+    <style name="MyActionBar"
+        parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/ActionBarTitleBackgroud</item>
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+
+    </style>
+
+    <style name="MyActionBarTitleText"
+        parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/ActionBarTitleText</item>
+    </style>
+
+
+
+
+
+
+</resources>

@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.prfc.Classes.AppData;
@@ -87,6 +89,8 @@ public class MessengerActivity extends Activity {
     ArrayList<Mate> invitedUsers;
     Socket socket;
 
+    InputMethodManager inputMethodManager;
+
     private int mReplyDelay = -1;
 
     private static final int READ_REQUEST_CODE = 100;
@@ -113,6 +117,19 @@ public class MessengerActivity extends Activity {
         if(groupid.equals("fail")){
             Toast.makeText(this, "인터넷 연결 안됌", Toast.LENGTH_SHORT).show();
         }
+
+        mChatView.getMessageView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                    Message message = (Message)adapterView.getItemAtPosition(position);
+                    Toast.makeText(MessengerActivity.this, " position" + position + " comment : "+message.getText(), Toast.LENGTH_SHORT).show();
+
+                    hideKeyboard();
+                return false;
+            }
+        });
 
         //Load saved messages
         loadMessages();
@@ -232,6 +249,13 @@ public class MessengerActivity extends Activity {
             }
         });
     }
+
+    private void hideKeyboard(){
+        inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(mChatView.getMessageView().getWindowToken(), 2);
+        mChatView.getMessageView().requestFocus();
+    }
+
 
     private void openGallery() {
         Intent intent;

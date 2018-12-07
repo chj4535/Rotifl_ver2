@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.prfc.CalendarActivity.CalendarActivity;
+import com.example.prfc.ChattingActivity.MakeCardActivity;
 import com.example.prfc.CommunityActivity.CommunityActivity;
 import com.example.prfc.GroupActivity.GroupActivity;
 import com.example.prfc.R;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private String name = "";
 
     private Button calenderTest;
+    private Button makeCardTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +54,18 @@ public class MainActivity extends AppCompatActivity {
         community = (Button)findViewById(R.id.community);
 
         calenderTest = (Button)findViewById(R.id.calendar_test_btn);
+        makeCardTest = (Button)findViewById(R.id.make_card_test_btn);
         calenderTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+                startActivity(intent);
+            }
+        });
+        makeCardTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MakeCardActivity.class);
                 startActivity(intent);
             }
         });

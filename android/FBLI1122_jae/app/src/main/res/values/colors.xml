@@ -4,6 +4,11 @@
     <color name="colorPrimaryDark">#555959</color>
     <color name="colorAccent">#009e9e</color>
 
+    <!--Action Bar colors-->
+    <color name="ActionBarTitleText">#000000</color>
+    <color name="ActionBarTitleBackgroud">#FFFFFF</color>
+    <!--Action Bar colors end-->
+
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
     <color name="bg_main">#428bca</color>

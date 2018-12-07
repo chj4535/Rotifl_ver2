@@ -52,7 +52,9 @@
         <activity android:name=".CommunityActivity.BoardDetailActivity" />
         <activity android:name=".CommunityActivity.BoardPostActivity" />
         <activity android:name=".BudgetActivity.GroupBudgetActivity" />
-        <activity android:name=".CalendarActivity.CalendarActivity"></activity>
+        <activity android:name=".CalendarActivity.CalendarActivity" />
+        <activity android:name=".ChattingActivity.MakeCardActivity"
+            android:theme="@android:style/Theme.Dialog"></activity>
     </application>
 
 </manifest>

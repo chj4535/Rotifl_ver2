@@ -124,4 +124,11 @@
         android:layout_toEndOf="@+id/progressBar"
         android:text="calendar test" />
 
+    <Button
+        android:id="@+id/make_card_test_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="make card test"
+        android:layout_toRightOf="@+id/calendar_test_btn"/>
+
 </RelativeLayout>
