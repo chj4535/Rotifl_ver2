@@ -116,12 +116,4 @@
         android:layout_marginEnd="55dp"
         android:text="Community" />
 
-    <Button
-        android:id="@+id/calendar_test_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/progressBar"
-        android:text="calendar test" />
-
 </RelativeLayout>

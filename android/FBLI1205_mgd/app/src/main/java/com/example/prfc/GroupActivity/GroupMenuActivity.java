@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.example.prfc.CalendarActivity.CalendarActivity;
 import com.example.prfc.ChattingActivity.MessengerActivity;
 import com.example.prfc.BudgetActivity.PersonalBudgetActivity;
 import com.example.prfc.Classes.Board;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class GroupMenuActivity extends AppCompatActivity {
 
-    private RelativeLayout BudgetManage, Chatting, PhotoShare;
+    private RelativeLayout BudgetManage, Chatting, PhotoShare, Schedule;
 
     String groupid;
     Board group;
@@ -37,6 +38,14 @@ public class GroupMenuActivity extends AppCompatActivity {
         BudgetManage = (RelativeLayout)findViewById(R.id.budget_manage);
         Chatting = (RelativeLayout)findViewById(R.id.chatting);
         PhotoShare = (RelativeLayout)findViewById(R.id.photoshare);
+        Schedule = (RelativeLayout)findViewById(R.id.schedule);
+
+        BudgetManage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GroupMenuActivity.this, CalendarActivity.class));
+            }
+        });
 
         BudgetManage.setOnClickListener(new View.OnClickListener() {
             @Override

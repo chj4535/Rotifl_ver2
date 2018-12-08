@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private String name = "";
     private String tuserid, tusername, temail;
 
-    private Button calenderTest;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,15 +49,6 @@ public class MainActivity extends AppCompatActivity {
         uname = (TextView)findViewById(R.id.username);
         groupMain = (Button)findViewById(R.id.groupmain);
         community = (Button)findViewById(R.id.community);
-
-        calenderTest = (Button)findViewById(R.id.calendar_test_btn);
-        calenderTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
-                startActivity(intent);
-            }
-        });
 
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
