@@ -56,6 +56,7 @@ public class PhotoCamShareActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_cam_share);
         getSupportActionBar().setElevation(0);
+        setTitle("사진 촬영후 업로드");
         groupid = getIntent().getStringExtra("groupid");
         takePictureButton = (Button) findViewById(R.id.button_image);
         uploadButton = (Button)findViewById(R.id.button_upload);

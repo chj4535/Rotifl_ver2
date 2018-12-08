@@ -7,7 +7,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_marginRight="16dp"
-    android:background="#FFFFFFFF"
+    android:background="@color/white"
     app:layoutManager="LinearLayoutManager"
     tools:context=".CalendarActivity.CardFragment"
     tools:listitem="@layout/fragment_card"

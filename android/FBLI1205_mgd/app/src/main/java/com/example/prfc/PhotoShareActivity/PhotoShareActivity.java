@@ -44,6 +44,7 @@ public class PhotoShareActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_share);
         getSupportActionBar().setElevation(0);
+        setTitle("사진 선택후 업로드");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 

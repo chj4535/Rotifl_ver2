@@ -7,7 +7,8 @@
         <item name="colorPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#FFFFFF</item>
         <item name="colorAccent">#FFFFFF</item>
-        <item name="android:statusBarColor">#000000</item>
+        <item name="android:statusBarColor">#FFFFFF</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <!-- ActionBar styles -->
@@ -16,6 +17,7 @@
 
         <!-- Support library compatibility -->
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+        <item name="background">@color/actionbar_background</item>
     </style>
 
     <style name="MyActionBarTitleText"

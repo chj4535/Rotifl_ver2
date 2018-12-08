@@ -18,8 +18,6 @@ public class GroupItemPopupActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_item_popup);
 
-        setTitle(" ");
-
         deleteBtn = (Button)findViewById(R.id.Delete_btn);
         EditBtn = (Button)findViewById(R.id.Edit_btn);
 

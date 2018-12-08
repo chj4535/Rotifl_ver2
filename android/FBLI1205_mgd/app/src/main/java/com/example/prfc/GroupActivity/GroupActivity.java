@@ -70,7 +70,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
         getSupportActionBar().setElevation(0);
-        setTitle("Group List");
+        setTitle("그룹 리스트");
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();//구글 로그인은 이렇게 유저 네임 받는거 가능, 이메일 로그인은 setname할떄 db에 저장한다음에 거기서 읽어와야됨

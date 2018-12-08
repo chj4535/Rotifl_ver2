@@ -65,6 +65,7 @@ public class GroupBudgetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_budget);
         getSupportActionBar().setElevation(0);
+        setTitle("그룹 예산");
         RequestList connection = new RequestList();
         connection.execute();
 

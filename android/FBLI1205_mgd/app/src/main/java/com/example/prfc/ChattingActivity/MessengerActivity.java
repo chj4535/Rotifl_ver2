@@ -48,6 +48,10 @@ import java.util.List;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.GRAY;
+import static android.graphics.Color.WHITE;
+
 public class MessengerActivity extends Activity {
 
     @VisibleForTesting
@@ -63,17 +67,17 @@ public class MessengerActivity extends Activity {
     @VisibleForTesting
     protected static final int OPTION_BUTTON_COLOR = R.color.teal500;
     @VisibleForTesting
-    protected static final int RIGHT_MESSAGE_TEXT_COLOR = Color.WHITE;
+    protected static final int RIGHT_MESSAGE_TEXT_COLOR = WHITE;
     @VisibleForTesting
-    protected static final int LEFT_MESSAGE_TEXT_COLOR = Color.BLACK;
+    protected static final int LEFT_MESSAGE_TEXT_COLOR = BLACK;
     @VisibleForTesting
-    protected static final int USERNAME_TEXT_COLOR = Color.WHITE;
+    protected static final int USERNAME_TEXT_COLOR = WHITE;
     @VisibleForTesting
-    protected static final int SEND_TIME_TEXT_COLOR = Color.WHITE;
+    protected static final int SEND_TIME_TEXT_COLOR = WHITE;
     @VisibleForTesting
-    protected static final int DATA_SEPARATOR_COLOR = Color.WHITE;
+    protected static final int DATA_SEPARATOR_COLOR = WHITE;
     @VisibleForTesting
-    protected static final int MESSAGE_STATUS_TEXT_COLOR = Color.WHITE;
+    protected static final int MESSAGE_STATUS_TEXT_COLOR = WHITE;
     @VisibleForTesting
     protected static final String INPUT_TEXT_HINT = "New message..";
     @VisibleForTesting
@@ -138,19 +142,19 @@ public class MessengerActivity extends Activity {
         loadMessages();
 
         //Set UI parameters if you need
-        mChatView.setRightBubbleColor(ContextCompat.getColor(this,RIGHT_BUBBLE_COLOR));
-        mChatView.setLeftBubbleColor(ContextCompat.getColor(this, LEFT_BUBBLE_COLOR));
-        mChatView.setBackgroundColor(ContextCompat.getColor(this, BACKGROUND_COLOR));
-        mChatView.setSendButtonColor(ContextCompat.getColor(this, SEND_BUTTON_COLOR));
+        mChatView.setRightBubbleColor(ContextCompat.getColor(this,R.color.gray200));
+        mChatView.setLeftBubbleColor(ContextCompat.getColor(this, R.color.gray200));
+        mChatView.setSendButtonColor(ContextCompat.getColor(this, R.color.black));
         mChatView.setSendIcon(SEND_ICON);
         mChatView.setOptionIcon(R.drawable.ic_account_circle);
-        mChatView.setOptionButtonColor(OPTION_BUTTON_COLOR);
-        mChatView.setRightMessageTextColor(RIGHT_MESSAGE_TEXT_COLOR);
-        mChatView.setLeftMessageTextColor(LEFT_MESSAGE_TEXT_COLOR);
-        mChatView.setUsernameTextColor(USERNAME_TEXT_COLOR);
-        mChatView.setSendTimeTextColor(SEND_TIME_TEXT_COLOR);
-        mChatView.setDateSeparatorColor(DATA_SEPARATOR_COLOR);
-        mChatView.setMessageStatusTextColor(MESSAGE_STATUS_TEXT_COLOR);
+        mChatView.setOptionButtonColor(BLACK);
+        mChatView.setRightMessageTextColor(BLACK);
+        mChatView.setLeftMessageTextColor(BLACK);
+        mChatView.setBackgroundColor(WHITE);
+        mChatView.setUsernameTextColor(BLACK);
+        mChatView.setSendTimeTextColor(BLACK);
+        mChatView.setDateSeparatorColor(BLACK);
+        mChatView.setMessageStatusTextColor(BLACK);
         mChatView.setInputTextHint(INPUT_TEXT_HINT);
         mChatView.setMessageMarginTop(MESSAGE_MARGIN);
         mChatView.setMessageMarginBottom(MESSAGE_MARGIN);

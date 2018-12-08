@@ -64,6 +64,7 @@ public class PersonalBudgetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_budget);
         getSupportActionBar().setElevation(0);
+        setTitle("개인 예산");
         groupid = getIntent().getStringExtra("groupid");
 
         RequestList connection = new RequestList();

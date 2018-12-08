@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +32,9 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button community, btnRemoveUser,
-            signOut, groupMain;
+    private Button btnRemoveUser,
+            signOut;
+    private RelativeLayout groupMain, community;
     private TextView email, uname;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
@@ -44,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setElevation(0);
+        setTitle("");
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
         email = (TextView)findViewById(R.id.useremail);
         uname = (TextView)findViewById(R.id.username);
-        groupMain = (Button)findViewById(R.id.groupmain);
-        community = (Button)findViewById(R.id.community);
-
+        groupMain = (RelativeLayout)findViewById(R.id.groupmain);
+        community = (RelativeLayout)findViewById(R.id.community);
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         setDataToView(user);

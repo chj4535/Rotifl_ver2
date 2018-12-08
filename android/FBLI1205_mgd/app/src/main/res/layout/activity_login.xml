@@ -10,35 +10,55 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorPrimaryDark"
         android:gravity="center"
+        android:background="@color/white"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
 
         <ImageView
-            android:layout_width="@dimen/logo_w_h"
-            android:layout_height="@dimen/logo_w_h"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="30dp"
-            android:contentDescription=""
-            android:src="@mipmap/ic_launcher"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            app:srcCompat="@drawable/ic_travel"
             tools:ignore="ContentDescription" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:paddingTop="0dp"
+            android:textColor="@android:color/black"
+            android:text="OURTRIP"
+            android:layout_marginBottom="80dp"
+            android:textSize="21dp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="TextView" />
 
         <EditText
             android:id="@+id/email"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="@string/hint_email"
+            android:textCursorDrawable="@null"
+            android:hint="이메일"
             android:inputType="textEmailAddress"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white" />
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:backgroundTint="@android:color/black" />
 
 
         <EditText
@@ -46,39 +66,42 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="@string/hint_password"
+            android:hint="비밀번호"
+            android:textCursorDrawable="@null"
             android:inputType="textPassword"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white" />
+            android:backgroundTint="@android:color/black"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/my_btn_bg"
+            android:layout_marginTop="7dip"
+            android:text="로그인"
+            android:textColor="@android:color/black" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/google_login"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:background="@color/colorAccent"
-            android:text="@string/btn_login"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/my_btn_bg"
+            android:text="구글 아이디로 로그인"
             android:textColor="@android:color/black" />
 
 
         <!-- Login Button -->
 
         <Button
-            android:id="@+id/btn_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:background="@color/colorAccent"
-            android:text="@string/btn_login"
-            android:textColor="@android:color/black" />
-
-        <Button
             android:id="@+id/btn_reset_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
+            android:layout_marginTop="15dp"
             android:background="@null"
-            android:text="@string/btn_forgot_password"
+            android:textSize="13sp"
+            android:text="비밀번호를 잊어버리셨습니까? 비밀번호 재설정하기"
             android:textAllCaps="false"
             android:textColor="@color/colorAccent" />
 
@@ -88,13 +111,14 @@
             android:id="@+id/btn_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
+            android:layout_marginTop="0dp"
             android:background="@null"
-            android:text="@string/btn_link_to_register"
+            android:text="아직 회원이 아니십니까? 회원가입하기"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:textSize="13sp"
             tools:ignore="SpUsage" />
+
     </LinearLayout>
 
     <ProgressBar

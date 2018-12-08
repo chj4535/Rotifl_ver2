@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context="com.example.prfc.AccountActivity.MainActivity">
 
@@ -21,29 +22,30 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/groupmain"
         android:layout_alignStart="@+id/groupmain"
+        android:layout_alignEnd="@+id/community"
+        android:background="@drawable/my_btn_bg"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="55dp"
-        android:text="@string/remove_user"
-        android:textStyle="bold"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="0dp"
+        android:text="계정 삭제"
+        android:textColor="@color/black"
         tools:layout_editor_absoluteX="42dp"
         tools:layout_editor_absoluteY="408dp" />
 
     <Button
         android:id="@+id/sign_out"
         style="?android:textAppearanceSmall"
-        android:layout_width="300dp"
+        android:layout_width="400dp"
         android:layout_alignStart="@+id/remove_user_button"
         android:layout_alignEnd="@+id/remove_user_button"
         android:layout_alignTop="@+id/remove_user_button"
-        android:layout_height="39dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         android:layout_marginTop="80dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/btn_sign_out"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
+        android:background="@drawable/my_btn_bg"
+        android:text="로그아웃"
+        android:textColor="@android:color/black"
         tools:layout_editor_absoluteX="42dp"
         tools:layout_editor_absoluteY="456dp" />
 
@@ -57,8 +59,8 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="40dp"
         android:gravity="left"
-        android:textSize="20dp"
-        android:textStyle="bold|italic" />
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/username"
@@ -70,29 +72,50 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="46dp"
         android:gravity="left"
-        android:textSize="20dp"
-        android:textStyle="bold|italic" />
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
-    <Button
+    <RelativeLayout
         android:id="@+id/groupmain"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/username"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="110dp"
         android:layout_marginStart="55dp"
-        android:layout_marginBottom="249dp"
-        android:text="Group" />
+        android:clickable="true"
+        android:text="그룹">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:id="@+id/image1"
+            android:layout_centerHorizontal="true"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/ic_group"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/image1"
+            android:layout_marginTop="100dp"
+            android:text="그룹"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="70dp"
         android:layout_marginStart="41dp"
         android:layout_toEndOf="@+id/progressBar"
         android:textSize="20dp"
-        android:text="USER EMAIL" />
+        android:textColor="@color/black"
+        android:text="사용자 이메일" />
 
     <TextView
         android:id="@+id/textView2"
@@ -104,16 +127,36 @@
         android:layout_marginStart="41dp"
         android:layout_marginTop="60dp"
         android:textSize="20dp"
-        android:text="USER NAME" />
+        android:textColor="@color/black"
+        android:text="사용자 이름" />
 
-    <Button
+    <RelativeLayout
         android:id="@+id/community"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/groupmain"
         android:layout_alignParentEnd="true"
+        android:clickable="true"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="55dp"
-        android:text="Community" />
+        android:layout_marginEnd="55dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:id="@+id/image2"
+            android:layout_centerHorizontal="true"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/ic_community"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/image2"
+            android:layout_marginTop="100dp"
+            android:text="커뮤니티"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
