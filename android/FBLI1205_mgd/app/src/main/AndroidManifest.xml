@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.prfc">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-
-
-    출처: http://superwony.tistory.com/5 [개발자 키우기]
 
     <application
         android:allowBackup="true"
@@ -77,7 +74,9 @@
         <activity android:name=".PhotoShareActivity.PhotoCamShareActivity" />
         <activity android:name=".PhotoShareActivity.PhotoMainActivity" />
         <activity android:name=".PhotoShareActivity.PhotoShareActivity" />
-        <activity android:name=".PhotoShareActivity.InformActivity"></activity>
+        <activity android:name=".PhotoShareActivity.InformActivity" />
+        <activity android:name=".ChattingActivity.MakeCardActivity"
+            android:theme="@android:style/Theme.Dialog"></activity>
     </application>
 
 </manifest>

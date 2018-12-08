@@ -43,7 +43,7 @@ public class PhotoShareActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_share);
-
+        getSupportActionBar().setElevation(0);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 

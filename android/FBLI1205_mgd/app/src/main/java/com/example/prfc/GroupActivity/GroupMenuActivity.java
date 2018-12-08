@@ -29,6 +29,7 @@ public class GroupMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_menu);
         setTitle("그룹 메뉴");
+        getSupportActionBar().setElevation(0);
         //getActionBar().setTitle("그룹 메뉴");
         //groupid = getIntent().getStringExtra("groupid");
         group = (Board) getIntent().getParcelableExtra("group");
@@ -40,10 +41,12 @@ public class GroupMenuActivity extends AppCompatActivity {
         PhotoShare = (RelativeLayout)findViewById(R.id.photoshare);
         Schedule = (RelativeLayout)findViewById(R.id.schedule);
 
-        BudgetManage.setOnClickListener(new View.OnClickListener() {
+        Schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GroupMenuActivity.this, CalendarActivity.class));
+                Intent intent = new Intent(GroupMenuActivity.this, CalendarActivity.class);
+                intent.putExtra("group", group);
+                startActivity(intent);
             }
         });
 

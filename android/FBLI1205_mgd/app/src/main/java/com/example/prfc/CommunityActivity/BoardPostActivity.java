@@ -65,6 +65,7 @@ public class BoardPostActivity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_board);
+        getSupportActionBar().setElevation(0);
         title = (EditText) findViewById(R.id.titleInput);
         content = (EditText) findViewById(R.id.contentInput);
         imageview = (ImageView)findViewById(R.id.imageInput);

@@ -17,7 +17,7 @@ public class PhotoMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_main);
-
+        getSupportActionBar().setElevation(0);
         groupid = getIntent().getStringExtra("groupid");
         tpupload = (Button)findViewById(R.id.btntpupload);
         chupload = (Button)findViewById(R.id.btnchupload);

@@ -20,7 +20,6 @@ public class SetNameActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_set_name);
-
         textView = (EditText)findViewById(R.id.nameText);
     }
     public void mOnClose(View V){

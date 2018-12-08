@@ -29,6 +29,7 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        getSupportActionBar().setElevation(0);
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 

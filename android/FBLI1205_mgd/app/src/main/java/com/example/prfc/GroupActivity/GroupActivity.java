@@ -69,6 +69,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
+        getSupportActionBar().setElevation(0);
         setTitle("Group List");
 
         user = FirebaseAuth.getInstance().getCurrentUser();

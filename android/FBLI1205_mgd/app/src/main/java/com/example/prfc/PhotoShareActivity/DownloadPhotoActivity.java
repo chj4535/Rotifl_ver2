@@ -69,7 +69,7 @@ public class DownloadPhotoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download_photo);
-
+        getSupportActionBar().setElevation(0);
         userid = FirebaseAuth.getInstance().getUid();
         ifnull = findViewById(R.id.showifnull);
         mMainRecyclerView = findViewById(R.id.image_recycler_view);

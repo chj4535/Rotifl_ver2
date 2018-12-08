@@ -42,6 +42,7 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community);
+        getSupportActionBar().setElevation(0);
         listView = (ListView) findViewById(R.id.list_view);
         eddit = (Button)findViewById(R.id.edit);
         list_itemArrayList = new ArrayList<list_item>();

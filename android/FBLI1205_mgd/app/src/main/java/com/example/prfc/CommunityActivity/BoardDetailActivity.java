@@ -52,7 +52,7 @@ public class BoardDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_detail);
-
+        getSupportActionBar().setElevation(0);
         Intent intent =getIntent();
         BoardTitle = (TextView)findViewById(R.id.BoradTitle);
         ath = (TextView)findViewById(R.id.Athor);

@@ -53,6 +53,7 @@ public class GoDutchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_go_dutch);
+        getSupportActionBar().setElevation(0);
         email = FirebaseAuth.getInstance().getCurrentUser().getEmail();;
         groupid = getIntent().getStringExtra("groupid");
 

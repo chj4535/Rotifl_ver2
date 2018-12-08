@@ -1,15 +1,22 @@
 package com.example.prfc.CalendarActivity;
 
 import android.graphics.RectF;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.example.prfc.Classes.Board;
 import com.example.prfc.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,17 +24,58 @@ import java.util.Locale;
 
 public abstract class BaseActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener{
 
-    private static final int TYPE_DAY_VIEW = 1;
-    private static final int TYPE_THREE_DAY_VIEW = 2;
-    private static final int TYPE_WEEK_VIEW = 3;
-
-    private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
+    FloatingActionButton fab;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
+    CardFragment cardFragment;
+
+    boolean ishide = true;
+    boolean isfirst = true;
+    String groupid;
+    String userid;
+    Board group;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+        getSupportActionBar().setElevation(0);
+        group = (Board)getIntent().getParcelableExtra("group");
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userid = user.getUid();
+        groupid = group.getId();
+
+        fab = (FloatingActionButton)findViewById(R.id.calendar_add_btn);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragmentManager = getSupportFragmentManager();
+
+                if(ishide){
+                    if(isfirst) {
+                        cardFragment = new CardFragment();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.add(R.id.layout, cardFragment).commit();
+                        isfirst = false;
+                    }
+                    else{
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        cardFragment = (CardFragment)fragmentManager.findFragmentById(R.id.layout);
+                        fragmentTransaction.show(cardFragment).commit();
+                    }
+                    ishide=false;
+                }
+                else{
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    cardFragment = (CardFragment)fragmentManager.findFragmentById(R.id.layout);
+                    fragmentTransaction.hide(cardFragment).commit();
+                    ishide = true;
+                }
+            }
+        });
 
         mWeekView = (WeekView) findViewById(R.id.weekView);
 
@@ -95,4 +143,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
     public WeekView getWeekView() {
         return mWeekView;
     }
+
+    public String getGroupid(){return groupid;}
+    public String getUserid(){return userid;}
 }

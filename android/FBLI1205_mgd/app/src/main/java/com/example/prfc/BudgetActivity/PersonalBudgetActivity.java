@@ -63,6 +63,7 @@ public class PersonalBudgetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_budget);
+        getSupportActionBar().setElevation(0);
         groupid = getIntent().getStringExtra("groupid");
 
         RequestList connection = new RequestList();
