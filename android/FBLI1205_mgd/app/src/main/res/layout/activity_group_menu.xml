@@ -1,47 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <Button
+    <RelativeLayout
         android:id="@+id/budget_manage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:clickable="true"
+        android:layout_alignBottom="@+id/gmcriteria"
+        android:layout_alignEnd="@+id/gmcriteria"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginStart="60dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginTop="120dp"
-        android:text="Budget
-        Manage"/>
+        android:orientation="horizontal">
 
-    <Button
+        <ImageView
+            android:layout_width="100dp"
+            android:id="@+id/image1"
+            android:layout_centerHorizontal="true"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/ic_budget"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/image1"
+            android:layout_marginTop="100dp"
+            android:text="예산 관리"
+            android:textSize="20dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/chatting"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignTop="@+id/budget_manage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd ="60dp"
-        android:text="Chatting" />
+        android:clickable="true"
+        android:layout_alignStart="@+id/gmcriteria"
+        android:layout_alignBottom="@+id/gmcriteria"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="60dp">
 
-    <Button
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/image2"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/ic_chat"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:layout_alignTop="@+id/image2"
+            android:text="채팅"
+            android:textSize="20dp"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:id="@+id/schedule"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignTop="@+id/budget_manage"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd ="60dp"
-        android:text="Schedule" />
-
-    <Button
-        android:id="@+id/photoshare"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignTop="@+id/budget_manage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="200dp"
-        android:layout_marginStart ="60dp"
-        android:text="PhotoShare" />
+        android:clickable="true"
+        android:layout_alignTop="@+id/gmcriteria"
+        android:layout_alignEnd="@+id/gmcriteria"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/image3"
+            app:srcCompat="@drawable/ic_schedule"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/image3"
+            android:layout_marginTop="100dp"
+            android:text="일정 관리"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/photoshare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:layout_alignTop="@+id/gmcriteria"
+        android:layout_alignStart="@+id/gmcriteria"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="30dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/image4"
+            app:srcCompat="@drawable/ic_photo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/image4"
+            android:text="사진 공유"
+            android:textSize="20dp"
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/gmcriteria"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>
+

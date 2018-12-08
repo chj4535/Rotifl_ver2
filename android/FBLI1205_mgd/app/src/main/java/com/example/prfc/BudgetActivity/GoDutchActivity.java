@@ -63,8 +63,8 @@ public class GoDutchActivity extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), "user id = " + currentid, Toast.LENGTH_SHORT).show();
         mMainRecyclerView = findViewById(R.id.uRecyclerView);
 
-        RequestList connection = new RequestList();
-        connection.execute();
+        //RequestList connection = new RequestList();
+        //connection.execute();
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,97 +198,6 @@ public class GoDutchActivity extends AppCompatActivity {
                 startActivityForResult(intent, 5);
             }
         } // 어댑터를 통해서 무엇을 보낼건지
-
-    }
-
-    //그룹 유저 요청
-    class RequestList extends AsyncTask<String, Void, String> {
-
-        int responseStatusCode;
-
-
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            HashMap<String, String> item;
-
-            //Toast.makeText(GroupActivity.this, result, Toast.LENGTH_SHORT).show();
-
-            parsedItems = parsing(result);
-
-            for(int i=0;i<parsedItems.size();i++){
-                item = parsedItems.get(i);
-                mBoardList.add(new UserList(item.get("name"), "0", item.get("email")));
-            }
-
-            mAdapter = new UserListAdapter(mBoardList);
-            mMainRecyclerView.setAdapter(mAdapter);
-
-        }
-
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String serverURL = "http://13.209.15.179:50000/user/" + groupid;
-
-            try {
-
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.setRequestMethod("GET");
-                httpURLConnection.setRequestProperty("Content-Type", "application/json");
-                httpURLConnection.setRequestProperty("Accept", "application/json");
-                httpURLConnection.connect();
-
-
-                responseStatusCode = httpURLConnection.getResponseCode();
-                System.out.println("**************************************ResponseCode " + responseStatusCode);
-
-                InputStream inputStream;
-                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = httpURLConnection.getInputStream();
-                } else {
-                    inputStream = httpURLConnection.getErrorStream();
-                }
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
-                }
-
-
-                bufferedReader.close();
-
-
-                return sb.toString();
-
-
-            } catch (Exception e) {
-
-                // Log.d(TAG, "InsertData: Error ", e);
-
-                return new String("Error: " + e.getMessage());
-            }
-
-        }
     }
 
     //결과 전송 개인 지출로

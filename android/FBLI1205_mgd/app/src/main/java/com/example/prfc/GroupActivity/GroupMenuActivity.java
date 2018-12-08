@@ -1,10 +1,12 @@
 package com.example.prfc.GroupActivity;
 
 import android.content.Intent;
+import android.os.RemoteCallbackList;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.example.prfc.ChattingActivity.MessengerActivity;
 import com.example.prfc.BudgetActivity.PersonalBudgetActivity;
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 
 public class GroupMenuActivity extends AppCompatActivity {
 
-    private Button BudgetManage, Chatting, PhotoShare;
+    private RelativeLayout BudgetManage, Chatting, PhotoShare;
 
     String groupid;
     Board group;
@@ -25,15 +27,16 @@ public class GroupMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_menu);
-
+        setTitle("그룹 메뉴");
+        //getActionBar().setTitle("그룹 메뉴");
         //groupid = getIntent().getStringExtra("groupid");
         group = (Board) getIntent().getParcelableExtra("group");
         groupid = group.getId();
 
 
-        BudgetManage = (Button)findViewById(R.id.budget_manage);
-        Chatting = (Button)findViewById(R.id.chatting);
-        PhotoShare = (Button)findViewById(R.id.photoshare);
+        BudgetManage = (RelativeLayout)findViewById(R.id.budget_manage);
+        Chatting = (RelativeLayout)findViewById(R.id.chatting);
+        PhotoShare = (RelativeLayout)findViewById(R.id.photoshare);
 
         BudgetManage.setOnClickListener(new View.OnClickListener() {
             @Override
