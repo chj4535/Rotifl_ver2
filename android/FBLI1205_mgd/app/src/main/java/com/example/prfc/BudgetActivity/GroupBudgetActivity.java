@@ -102,6 +102,7 @@ public class GroupBudgetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GroupBudgetActivity.this, ApplygSpentActivity.class);
+                intent.putExtra("group", group);
                 startActivityForResult(intent, 3);
             }
         });
