@@ -38,7 +38,6 @@ import  android.util.Base64;
 import java.util.Date;
 
 public class BoardDetailActivity extends AppCompatActivity {
-    TextView BoardTitle;// = (TextView)findViewById(R.id.BoradTitle);
     TextView ath;//= (TextView)findViewById(R.id.Athor);
     TextView body;//= (TextView)findViewById(R.id.BoardBody);
 
@@ -54,11 +53,9 @@ public class BoardDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_board_detail);
         getSupportActionBar().setElevation(0);
         Intent intent =getIntent();
-        BoardTitle = (TextView)findViewById(R.id.BoradTitle);
         ath = (TextView)findViewById(R.id.Athor);
         body = (TextView)findViewById(R.id.BoardBody);
-
-        BoardTitle.setText("제목:"+intent.getStringExtra("title"));
+        setTitle("제목: " + intent.getStringExtra("title"));
         ath.setText("작성자 : "+intent.getStringExtra("user"));
         body.setText(intent.getStringExtra("content"));
         URL = intent.getStringExtra("image");

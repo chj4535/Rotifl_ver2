@@ -66,6 +66,7 @@ public class BoardPostActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_board);
         getSupportActionBar().setElevation(0);
+        setTitle("글작성");
         title = (EditText) findViewById(R.id.titleInput);
         content = (EditText) findViewById(R.id.contentInput);
         imageview = (ImageView)findViewById(R.id.imageInput);
