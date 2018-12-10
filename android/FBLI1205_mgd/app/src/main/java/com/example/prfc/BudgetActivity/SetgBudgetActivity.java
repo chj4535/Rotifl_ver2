@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.prfc.Classes.Board;
 import com.example.prfc.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,6 +32,7 @@ public class SetgBudgetActivity extends Activity {
     private EditText textView;
     private DatabaseReference mDatabase;
     private String groupid;
+    private Board group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,8 @@ public class SetgBudgetActivity extends Activity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         textView = (EditText)findViewById(R.id.txtText);
-        groupid = getIntent().getStringExtra("groupid");
+        group = (Board) getIntent().getParcelableExtra("group");
+        groupid = group.getId();
         Toast.makeText(getApplicationContext(), mDatabase.toString(), Toast.LENGTH_SHORT).show();
     }
     public void mOnClose(View V){
@@ -52,7 +55,7 @@ public class SetgBudgetActivity extends Activity {
             return;
         }
         //groupid로 바꿔야 함
-        mDatabase.child("12").child("amount").setValue(textView.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+        mDatabase.child(groupid).child("amount").setValue(textView.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 // Write was successful!

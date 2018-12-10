@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.prfc.Classes.Board;
 import com.example.prfc.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +31,7 @@ public class ApplySpentActivity extends Activity {
     EditText itemView;
     String item, price, date, groupid, userid;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private Board group;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,8 @@ public class ApplySpentActivity extends Activity {
 
         priceView = (EditText)findViewById(R.id.pricetext);
         itemView = (EditText)findViewById(R.id.itemtext);
-        groupid = getIntent().getStringExtra("groupid");
+        group = (Board) getIntent().getParcelableExtra("group");
+        groupid = group.getId();
         userid = FirebaseAuth.getInstance().getUid();
     }
 

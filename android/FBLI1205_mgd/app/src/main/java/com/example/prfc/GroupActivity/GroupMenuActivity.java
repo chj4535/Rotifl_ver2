@@ -63,9 +63,7 @@ public class GroupMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GroupMenuActivity.this, MessengerActivity.class);
-
                 intent.putExtra("group", group);
-
                 startActivity(intent);
             }
         });

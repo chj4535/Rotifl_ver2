@@ -69,6 +69,7 @@ public class PersonalBudgetActivity extends AppCompatActivity {
         setTitle("개인 예산");
         group = (Board) getIntent().getParcelableExtra("group");
         groupid = group.getId();
+        Log.d("asdasd", "groupid = " + groupid);
 
         RequestList connection = new RequestList();
         connection.execute();
