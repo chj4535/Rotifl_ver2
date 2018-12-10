@@ -6,44 +6,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/my_listview"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="top"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/BoradTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="viewStart"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/Athor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/BoardBody"
-            android:layout_width="match_parent"
-            android:layout_height="186dp"
-            android:text="TextView"
-            android:textSize="24sp" />
-
-        <ImageView
-            android:id="@+id/imgTranslate"
+        <LinearLayout
+            android:id="@+id/my_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@android:drawable/alert_dark_frame" />
-    </LinearLayout><![CDATA[
+            android:gravity="top"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/BoradTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/Athor"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="TextView"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/BoardBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/imgTranslate"
+                android:layout_width="match_parent"
+                android:layout_height="289dp" />
+
+        </LinearLayout>
+        <![CDATA[
 
 
 
@@ -52,4 +58,5 @@
 
 
     ]]>
+</ScrollView>
 </android.support.constraint.ConstraintLayout>

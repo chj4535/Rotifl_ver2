@@ -3,10 +3,11 @@ package com.example.prfc.Classes;
 import android.widget.RelativeLayout;
 import android.widget.Button;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class list_item {
-    private Date write_date;
+    private String write_date;
     private String _id ;
     private String boardid;
     private String title ;
@@ -20,7 +21,7 @@ public class list_item {
         return profile_image;
     }
 
-    public Date getWrite_date() {
+    public String getWrite_date() {
         return write_date;
     }
 
@@ -55,7 +56,7 @@ public class list_item {
         this.profile_image = profile_image;
     }
 
-    public void setWrite_date(Date write_date) {
+    public void setWrite_date(String write_date) {
         this.write_date = write_date;
     }
 
@@ -97,7 +98,10 @@ public class list_item {
                      String bordid,
                      String title, String user,
                      String content, String image) {
-        this.write_date = write_date;
+        SimpleDateFormat full_sdf = new SimpleDateFormat("yyyy-MM-dd, a hh:mm:ss");
+        String date = full_sdf.format(write_date);
+
+        this.write_date = date;
         this._id = _id;
         this.boardid = bordid;
         this.title = title;

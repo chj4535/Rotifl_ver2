@@ -53,10 +53,17 @@ public class MyListAdpater extends BaseAdapter {
             title_textView  =(TextView)convertView.findViewById(R.id.title_textview);
             relativeLayout = (RelativeLayout)convertView.findViewById(R.id.relativeLayout);
         }
-        nickname_textView.setText(this.list_itemArrayList.get(position).getUser());
-        title_textView.setText(this.list_itemArrayList.get(position).getTitle());
-        content_textView.setText(this.list_itemArrayList.get(position).getContent());
-        date_textView.setText(this.list_itemArrayList.get(position).getWrite_date().toString());
+        nickname_textView.setText("작성자 : "+this.list_itemArrayList.get(position).getUser());
+        title_textView.setText("제목 : "+this.list_itemArrayList.get(position).getTitle());
+        String summary = this.list_itemArrayList.get(position).getContent();
+        int leng = summary.length();
+        String ext ="";
+        if(leng>7) {
+            leng = 7;
+            ext = "...";
+        }
+        content_textView.setText("내용 : "+summary.substring(0, leng)+ext);
+        date_textView.setText("작성날짜 : "+this.list_itemArrayList.get(position).getWrite_date());
         return convertView;
     }
 }

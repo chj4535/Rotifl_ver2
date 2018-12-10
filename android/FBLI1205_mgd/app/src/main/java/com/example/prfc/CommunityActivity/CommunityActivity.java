@@ -42,7 +42,6 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community);
-        getSupportActionBar().setElevation(0);
         listView = (ListView) findViewById(R.id.list_view);
         eddit = (Button)findViewById(R.id.edit);
         list_itemArrayList = new ArrayList<list_item>();
@@ -200,19 +199,13 @@ public class CommunityActivity extends AppCompatActivity implements View.OnClick
 
             for (int k=0; k< MAP.size(); k++)
             {
-                int leng = MAP.get(k).get("content").length();
-                String ext ="";
-                if(leng>7) {
-                    leng = 7;
-                    ext = "...";
-                }
                 list_itemArrayList.add(
                         new list_item(
                                 new Date(),
                                 (String)MAP.get(k).get("boardid"),
                                 (String)MAP.get(k).get("title"),
                                 (String)MAP.get(k).get("user"),
-                                (String)MAP.get(k).get("content").substring(0, leng)+ext,
+                                (String)MAP.get(k).get("content"),
                                 (String)MAP.get(k).get("image")));
 //                                (String)MAP.get(k).get("comment")));
             }
