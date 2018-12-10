@@ -87,6 +87,7 @@ public class PersonalBudgetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PersonalBudgetActivity.this, GroupBudgetActivity.class);
+                intent.putExtra("group", group);
                 startActivityForResult(intent, 2);
             }
         });
@@ -353,7 +354,7 @@ public class PersonalBudgetActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String serverURL = "http://13.209.15.179:50000/user/" + userid + "/group/1/budget";
+            String serverURL = "http://13.209.15.179:50000/user/" + userid + "/group/" + groupid + "/budget";
 
             try {
 
@@ -431,7 +432,7 @@ public class PersonalBudgetActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String serverURL = "http://13.209.15.179:50000/user/" + userid + "/group/1/budget";
+            String serverURL = "http://13.209.15.179:50000/user/" + userid + "/group/"+ groupid +"/budget";
 
             try {
 

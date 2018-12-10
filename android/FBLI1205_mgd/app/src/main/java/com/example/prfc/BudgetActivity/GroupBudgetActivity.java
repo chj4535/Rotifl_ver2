@@ -113,9 +113,11 @@ public class GroupBudgetActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String amount = dataSnapshot.getValue(String.class);
-                oamount = Integer.valueOf(amount);
-                String res = String.valueOf(oamount - samount);
-                Budget.setText(res);
+                if(amount!=null && amount!="") {
+                    oamount = Integer.valueOf(amount);
+                    String res = String.valueOf(oamount - samount);
+                    Budget.setText(res);
+                }
             }
 
             @Override

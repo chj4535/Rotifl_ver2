@@ -146,6 +146,7 @@ public class PhotoShareActivity extends AppCompatActivity {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
+                            progressDialog.setCanceledOnTouchOutside(false);
                             progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });

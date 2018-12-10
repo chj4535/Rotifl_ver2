@@ -263,6 +263,7 @@ public class DownloadPhotoActivity extends AppCompatActivity {
                 public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     Log.d("vvvv", "inasdasd error = dd");
                     double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                    progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.setMessage("Downloaded "+(int)progress+"%");
                 }
             }).addOnFailureListener(new OnFailureListener() {
