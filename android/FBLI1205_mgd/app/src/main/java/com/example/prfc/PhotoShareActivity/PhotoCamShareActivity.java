@@ -147,6 +147,9 @@ public class PhotoCamShareActivity extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
                             Toast.makeText(PhotoCamShareActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            imageView.setImageResource(android.R.color.transparent);
+                            Uri uri = Uri.parse("");
+                            file = uri;
                             //db에 업로드한 파일 경로 추가
                             mDatabase.child("images").child(groupid).child("images/" + randomid).setValue(userid).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -160,7 +163,7 @@ public class PhotoCamShareActivity extends AppCompatActivity {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             // Write failed
-                                            Toast.makeText(getApplicationContext(), "dbupdate = " + "failed", Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(getApplicationContext(), "dbupdate = " + "failed", Toast.LENGTH_SHORT).show();
                                             // ...
                                         }
                                     });
