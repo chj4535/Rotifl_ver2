@@ -15,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:layout_centerInParent="true"
+        android:textColor="@color/black"
         android:textSize="30dp"
         android:layout_height="50dp" />
 
@@ -26,6 +27,7 @@
         android:gravity="center"
         android:layout_centerInParent="true"
         android:textSize="30dp"
+        android:textColor="@android:color/black"
         android:layout_height="50dp" />
 
     <TextView
@@ -39,36 +41,46 @@
         android:text="지출내역"
         android:textSize="20dp"
         android:layout_alignTop="@+id/personal_icon"
+        android:textColor="@android:color/black"
         android:layout_height="30dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/gspent_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignTop="@+id/groupbudget"
-        android:layout_alignBottom="@+id/setBudget2"
         android:layout_marginTop="80dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="45dp"
         android:clickable="false"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
-    <Button
-        android:id="@+id/setBudget2"
-        android:layout_width="80dp"
-        android:layout_height="45dp"
-        android:layout_alignStart="@+id/go_dutch"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="5dp"
-        android:text="예산설정" />
 
-    <Button
-        android:id= "@+id/apply_spent2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="5dp"
-        android:layout_width="80dp"
-        android:text="지출입력"
-        android:layout_height="45dp" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/setBudget2"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/my_btn_bg"
+                android:text="예산설정" />
+
+            <Button
+                android:id= "@+id/apply_spent2"
+                android:layout_weight="1"
+                android:layout_width="80dp"
+                android:text="지출입력"
+                android:background="@drawable/my_btn_bg"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>

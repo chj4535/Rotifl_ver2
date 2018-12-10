@@ -7,31 +7,97 @@
     android:background="@color/white"
     tools:context=".PhotoShareActivity.PhotoMainActivity">
 
-    <Button
+
+
+    <RelativeLayout
         android:id="@+id/btnchupload"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="160dp"
-        android:text="선택후 업로드"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_alignBottom="@+id/pmaincrit"
+        android:layout_alignEnd="@+id/pmaincrit"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="horizontal">
 
-    <Button
+        <ImageView
+            android:layout_width="100dp"
+            android:id="@+id/image1"
+            android:layout_centerHorizontal="true"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/ic_galary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/image1"
+            android:textColor="@color/black"
+            android:layout_marginTop="100dp"
+            android:text="선택후 업로드"
+            android:textSize="17sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/btntpupload"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/btnchupload"
-        android:layout_marginEnd="60dp"
-        android:text="촬영후 업로드"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_alignStart="@+id/pmaincrit"
+        android:layout_alignBottom="@+id/pmaincrit"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="60dp">
 
-    <Button
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/image2"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/ic_camera"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:layout_alignTop="@+id/image2"
+            android:textColor="@color/black"
+            android:text="촬영후 업로드"
+            android:textSize="17sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/btndownload"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignTop="@+id/btnchupload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:text="사진 다운로드" />
+        android:layout_alignTop="@+id/pmaincrit"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            app:srcCompat="@drawable/ic_download" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/image3"
+            android:layout_marginTop="100dp"
+            android:text="사진 다운로드"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:textSize="17sp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/pmaincrit"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

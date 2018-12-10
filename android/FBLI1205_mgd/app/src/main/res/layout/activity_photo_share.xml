@@ -17,16 +17,18 @@
 
         <Button
             android:id="@+id/btnChoose"
-            android:text="Choose"
+            android:text="선택"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:background="@drawable/my_btn_bg"
             android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnUpload"
-            android:text="Upload"
+            android:text="업로드"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:background="@drawable/my_btn_bg"
             android:layout_height="wrap_content" />
     </LinearLayout>
 

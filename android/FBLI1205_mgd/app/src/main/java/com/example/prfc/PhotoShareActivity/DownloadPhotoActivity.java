@@ -235,52 +235,44 @@ public class DownloadPhotoActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Downloading...");
         progressDialog.show();
-
-        if(DIR.equals("")){
-            Intent intent = new Intent(DownloadPhotoActivity.this, InformActivity.class);
-            startActivity(intent);
-        }else{
-            StorageReference storageRef = storage.getReference();
-            StorageReference downloadRef = storageRef.child("images").child(data.getName());
-            //Log.d("vvvv", "inasdasd download ref = " + downloadRef.toString());
-            try{
-                File rootPath = new File(DIR, "groupname");
-                if(!rootPath.exists()) {
-                    rootPath.mkdirs();
-                }
-                final File fileNameOnDevice = new File(rootPath,data.getName());
-
-                Log.d("vvvv", "inasdasd rootpath = " + rootPath.getAbsolutePath());
-                fileNameOnDevice.createNewFile();
-                downloadRef.getFile(fileNameOnDevice).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot task) {
-                        Toast.makeText(getApplicationContext(), "File Downloaded", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
-                }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        Log.d("vvvv", "inasdasd error = dd");
-                        double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
-                                .getTotalByteCount());
-                        progressDialog.setMessage("Downloaded "+(int)progress+"%");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Write failed
-                        Log.d("vvvv", "inasdasd error = ee");
-                        progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "file download failed : " + e, Toast.LENGTH_SHORT).show();
-                        //Log.d("asdasd", "inasdasd error = " + e.getMessage());
-                        // ...
-                    }
-                });
-            }catch(Exception e){
-                Log.d("vvvv", "inasdasd error = " + e);
+        StorageReference storageRef = storage.getReference();
+        StorageReference downloadRef = storageRef.child("images").child(data.getName());
+        //Log.d("vvvv", "inasdasd download ref = " + downloadRef.toString());
+        try{
+            File rootPath = new File(DIR, "groupname");
+            if(!rootPath.exists()) {
+                rootPath.mkdirs();
             }
+            final File fileNameOnDevice = new File(rootPath,data.getName());
 
+            Log.d("vvvv", "inasdasd rootpath = " + rootPath.getAbsolutePath());
+            fileNameOnDevice.createNewFile();
+            downloadRef.getFile(fileNameOnDevice).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot task) {
+                    Toast.makeText(getApplicationContext(), "File Downloaded", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+            }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Log.d("vvvv", "inasdasd error = dd");
+                    double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                    progressDialog.setMessage("Downloaded "+(int)progress+"%");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Write failed
+                    Log.d("vvvv", "inasdasd error = ee");
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "file download failed : " + e, Toast.LENGTH_SHORT).show();
+                    //Log.d("asdasd", "inasdasd error = " + e.getMessage());
+                    // ...
+                }
+            });
+        }catch(Exception e){
+            Log.d("vvvv", "inasdasd error = " + e);
         }
     }
 

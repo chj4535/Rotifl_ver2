@@ -74,7 +74,6 @@
         <activity android:name=".PhotoShareActivity.PhotoCamShareActivity" />
         <activity android:name=".PhotoShareActivity.PhotoMainActivity" />
         <activity android:name=".PhotoShareActivity.PhotoShareActivity" />
-        <activity android:name=".PhotoShareActivity.InformActivity" />
         <activity android:name=".ChattingActivity.MakeCardActivity"
             android:theme="@android:style/Theme.Dialog"></activity>
     </application>

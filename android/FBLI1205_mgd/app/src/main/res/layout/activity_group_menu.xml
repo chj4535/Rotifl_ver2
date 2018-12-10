@@ -9,13 +9,11 @@
         android:id="@+id/budget_manage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:clickable="true"
         android:layout_alignBottom="@+id/gmcriteria"
         android:layout_alignEnd="@+id/gmcriteria"
         android:layout_marginBottom="60dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginStart="60dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -33,20 +31,18 @@
             android:textColor="@color/black"
             android:layout_marginTop="100dp"
             android:text="예산 관리"
-            android:textSize="20dp"/>
+            android:textSize="17sp"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/chatting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:clickable="true"
         android:layout_alignStart="@+id/gmcriteria"
         android:layout_alignBottom="@+id/gmcriteria"
         android:layout_marginStart="30dp"
-        android:layout_marginBottom="60dp"
-        android:layout_marginEnd="60dp">
+        android:layout_marginBottom="60dp">
 
         <ImageView
             android:layout_width="100dp"
@@ -63,7 +59,7 @@
             android:layout_alignTop="@+id/image2"
             android:textColor="@color/black"
             android:text="채팅"
-            android:textSize="20dp"/>
+            android:textSize="17sp"/>
     </RelativeLayout>
 
 
@@ -71,11 +67,9 @@
         android:id="@+id/schedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:clickable="true"
         android:layout_alignTop="@+id/gmcriteria"
         android:layout_alignEnd="@+id/gmcriteria"
-        android:layout_marginStart="60dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="30dp"
         android:orientation="horizontal">
@@ -95,18 +89,16 @@
             android:text="일정 관리"
             android:textColor="@color/black"
             android:layout_centerHorizontal="true"
-            android:textSize="20dp"/>
+            android:textSize="17sp"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/photoshare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:clickable="true"
         android:layout_alignTop="@+id/gmcriteria"
         android:layout_alignStart="@+id/gmcriteria"
-        android:layout_marginEnd="60dp"
         android:layout_marginTop="60dp"
         android:layout_marginStart="30dp"
         android:orientation="horizontal">
@@ -123,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/image4"
             android:text="사진 공유"
-            android:textSize="20dp"
+            android:textSize="17sp"
             android:textColor="@color/black"
             android:layout_marginTop="100dp"
             android:layout_centerHorizontal="true"/>
