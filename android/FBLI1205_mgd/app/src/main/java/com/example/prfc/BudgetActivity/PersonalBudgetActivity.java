@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.prfc.Classes.Board;
 import com.example.prfc.Classes.ExpenseList;
 import com.example.prfc.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,6 +59,7 @@ public class PersonalBudgetActivity extends AppCompatActivity {
     private int samount = 0;
     private int oamount;
     private int temp;
+    private Board group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,8 @@ public class PersonalBudgetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_personal_budget);
         getSupportActionBar().setElevation(0);
         setTitle("개인 예산");
-        groupid = getIntent().getStringExtra("groupid");
+        group = (Board) getIntent().getParcelableExtra("group");
+        groupid = group.getId();
 
         RequestList connection = new RequestList();
         connection.execute();

@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.example.prfc.Classes.Board;
 import com.example.prfc.R;
 
 public class PhotoMainActivity extends AppCompatActivity {
 
     private RelativeLayout tpupload, chupload, download;
     private String groupid;
+    private Board group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +22,8 @@ public class PhotoMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_photo_main);
         getSupportActionBar().setElevation(0);
         setTitle("사진 공유");
-        groupid = getIntent().getStringExtra("groupid");
+        group = (Board) getIntent().getParcelableExtra("group");
+        groupid = group.getId();
         tpupload = (RelativeLayout)findViewById(R.id.btntpupload);
         chupload = (RelativeLayout)findViewById(R.id.btnchupload);
         download = (RelativeLayout)findViewById(R.id.btndownload);

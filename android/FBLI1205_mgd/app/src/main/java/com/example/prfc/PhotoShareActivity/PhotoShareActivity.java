@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.prfc.AccountActivity.MainActivity;
+import com.example.prfc.Classes.Board;
 import com.example.prfc.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,7 +39,7 @@ public class PhotoShareActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private DatabaseReference mDatabase;
     private String groupid, userid;
-
+    private Board group;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +48,12 @@ public class PhotoShareActivity extends AppCompatActivity {
         setTitle("사진 선택후 업로드");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-
+        group = (Board) getIntent().getParcelableExtra("group");
+        groupid = group.getId();
         //Initialize Views
         btnChoose = (Button) findViewById(R.id.btnChoose);
         btnUpload = (Button) findViewById(R.id.btnUpload);
         imageView = (ImageView) findViewById(R.id.imgView);
-        groupid = getIntent().getStringExtra("groupid");
         userid = FirebaseAuth.getInstance().getUid();
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -115,7 +116,7 @@ public class PhotoShareActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             Toast.makeText(PhotoShareActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
                             //db에 업로드한 파일 경로 추가
-                            mDatabase.child("images").child("groupname").child("images/" + randomid).child("uploader").setValue(userid).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            mDatabase.child("images").child(groupid).child("images/" + randomid).child("uploader").setValue(userid).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     // Write was successful!

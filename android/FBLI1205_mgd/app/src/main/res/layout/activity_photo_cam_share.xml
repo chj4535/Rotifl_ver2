@@ -10,27 +10,36 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.prfc.PhotoShareActivity.PhotoCamShareActivity">
 
+    <LinearLayout
+        android:id="@+id/llayout13"
+        android:layout_width="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/llayout12"
+        android:layout_marginBottom="0dp"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:rotation="90" />
+        <ImageView
+            android:id="@+id/imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:rotation="90" />
 
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llayout12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
         android:weightSum="2">
 
         <Button
             android:id="@+id/button_image"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
             android:layout_weight="1"
             android:background="@drawable/my_btn_bg"
             android:onClick="takePicture"
@@ -45,6 +54,7 @@
             android:onClick="uploadPicture"
             android:text="업로드하기" />
     </LinearLayout>
+
 
 </RelativeLayout>
 

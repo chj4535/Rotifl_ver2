@@ -115,7 +115,7 @@ public class ApplySpentActivity extends Activity {
         @Override
         protected String doInBackground(String... params) {
 
-            String serverURL = "http://13.209.15.179:50000/user/" + userid + "/group/1/budget";
+            String serverURL = "http://13.209.15.179:50000/user/" + userid + "/group/" + groupid +"/budget";
 
             try {
 

@@ -7,35 +7,39 @@
 
     <ImageView
         android:id="@+id/imageviewer"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
         android:src="@drawable/loading" />
 
     <TextView
+        android:id="@+id/textviewer"
         android:layout_width="100dp"
-        android:layout_height="200dp"
-        android:layout_alignEnd="@+id/downloadbtn"
+        android:layout_height="230dp"
+        android:layout_alignStart="@+id/imageviewer"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="230dp"
         android:layout_marginEnd="76dp"
-
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_toEndOf="@+id/imageviewer"
         android:text="Large Text"
-        android:id="@+id/textviewer" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
         android:id="@+id/downloadbtn"
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="115dp"
         android:layout_alignParentEnd="true"
+        android:background="@drawable/my_btn_bg"
         android:layout_marginEnd="0dp"
         android:text="다운로드" />
 
     <Button
         android:id="@+id/deletebtn"
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="115dp"
         android:layout_alignTop="@+id/downloadbtn"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="100dp"
+        android:background="@drawable/my_btn_bg"
+        android:layout_marginTop="115dp"
         android:layout_marginEnd="0dp"
         android:text="삭제" />
 

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.prfc.Classes.Board;
 import com.example.prfc.Classes.ExpenseList;
 import com.example.prfc.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,12 +54,13 @@ public class GroupBudgetActivity extends AppCompatActivity {
     private ExpenseListAdapter mAdapter;
     private List<ExpenseList> mBoardList = new ArrayList<>();
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference amount = ref.child("12").child("amount");
+    private DatabaseReference amount;
     private String item, price, date;
     int pos = 0;
     private int samount = 0;
     private int oamount;
     private int temp;
+    private Board group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,9 @@ public class GroupBudgetActivity extends AppCompatActivity {
         connection.execute();
 
         userid = FirebaseAuth.getInstance().getCurrentUser().getUid();;
-        groupid = getIntent().getStringExtra("groupid");
+        group = (Board) getIntent().getParcelableExtra("group");
+        groupid = group.getId();
+        amount = ref.child(groupid).child("amount");
         Budget = (TextView)findViewById(R.id.groupbudget);
         SetBudget = (Button)findViewById(R.id.setBudget2);
         GoDutch = (Button)findViewById(R.id.go_dutch);
@@ -326,7 +330,7 @@ public class GroupBudgetActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String serverURL = "http://13.209.15.179:50000/user/" + userid + "/group/1/gbudget";
+            String serverURL = "http://13.209.15.179:50000/user/" + userid + "/group/" + groupid + "/gbudget";
 
             try {
 
@@ -404,7 +408,7 @@ public class GroupBudgetActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String serverURL = "http://13.209.15.179:50000/user/" + userid + "/group/1/gbudget";
+            String serverURL = "http://13.209.15.179:50000/user/" + userid + "/group/" + groupid + "/gbudget";
 
             try {
 

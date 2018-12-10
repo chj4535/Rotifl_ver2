@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.prfc.Classes.Board;
 import com.example.prfc.Classes.ImageList;
 import com.example.prfc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,7 +54,7 @@ import java.util.UUID;
 
 public class DownloadPhotoActivity extends AppCompatActivity {
     private DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference strpath = ref.child("images").child("groupname").child("images");
+    private DatabaseReference strpath;
     private FirebaseStorage storage;
     private ImageListAdapter mAdapter;
     private TextView ifnull, dirview;
@@ -62,7 +63,9 @@ public class DownloadPhotoActivity extends AppCompatActivity {
     private RecyclerView mMainRecyclerView;
     private Bitmap bitmap;
     private String DIR;
-    private String userid;;
+    private String userid, groupid;
+    private Board group;
+
     private ArrayList<String> path = new ArrayList<>();;
 
     @Override
@@ -71,6 +74,8 @@ public class DownloadPhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_download_photo);
         setTitle("사진 다운로드");
         getSupportActionBar().setElevation(0);
+        group = (Board) getIntent().getParcelableExtra("group");
+        groupid = group.getId();
         userid = FirebaseAuth.getInstance().getUid();
         ifnull = findViewById(R.id.showifnull);
         mMainRecyclerView = findViewById(R.id.image_recycler_view);
@@ -80,8 +85,8 @@ public class DownloadPhotoActivity extends AppCompatActivity {
         mMainRecyclerView.setAdapter(mAdapter);
         dirview = (TextView)findViewById(R.id.dirviewer);
         DIR = Environment.getExternalStorageDirectory().toString();
-
-        dirview.setText(DIR + "/" + "groupname");
+        strpath = ref.child("images").child(groupid).child("images");
+        dirview.setText(DIR + "/" + "group" + groupid);
         verifyStoragePermissions(DownloadPhotoActivity.this);
 
         strpath.addListenerForSingleValueEvent(new ValueEventListener() {
