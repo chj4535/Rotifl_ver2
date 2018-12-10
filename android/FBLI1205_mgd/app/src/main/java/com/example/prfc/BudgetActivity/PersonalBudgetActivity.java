@@ -111,7 +111,7 @@ public class PersonalBudgetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PersonalBudgetActivity.this, ApplySpentActivity.class);
-                intent.putExtra("groupid", groupid);
+                intent.putExtra("group", group);
                 startActivityForResult(intent, 3);
             }
         });

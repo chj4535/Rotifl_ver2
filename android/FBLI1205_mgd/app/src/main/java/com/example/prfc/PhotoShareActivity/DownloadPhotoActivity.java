@@ -84,7 +84,7 @@ public class DownloadPhotoActivity extends AppCompatActivity {
         mAdapter = new ImageListAdapter(mBoardList);
         mMainRecyclerView.setAdapter(mAdapter);
         dirview = (TextView)findViewById(R.id.dirviewer);
-        DIR = Environment.getExternalStorageDirectory().toString();
+        DIR = Environment.getExternalStorageDirectory().toString() + "/OURTRIP";
         strpath = ref.child("images").child(groupid).child("images");
         dirview.setText(DIR + "/" + "group" + groupid);
         verifyStoragePermissions(DownloadPhotoActivity.this);
@@ -244,7 +244,7 @@ public class DownloadPhotoActivity extends AppCompatActivity {
         StorageReference downloadRef = storageRef.child("images").child(data.getName());
         //Log.d("vvvv", "inasdasd download ref = " + downloadRef.toString());
         try{
-            File rootPath = new File(DIR, "groupname");
+            File rootPath = new File(DIR,"group" + groupid);
             if(!rootPath.exists()) {
                 rootPath.mkdirs();
             }

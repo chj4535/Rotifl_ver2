@@ -53,7 +53,9 @@ public class GroupMenuActivity extends AppCompatActivity {
         BudgetManage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GroupMenuActivity.this, PersonalBudgetActivity.class));
+                Intent intent = new Intent(GroupMenuActivity.this, PersonalBudgetActivity.class);
+                intent.putExtra("group", group);
+                startActivity(intent);
             }
         });
 
@@ -72,10 +74,9 @@ public class GroupMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GroupMenuActivity.this, PhotoMainActivity.class);
-                intent.putExtra("groupid", groupid);
+                intent.putExtra("group", group);
                 startActivity(intent);
             }
         });
     }
-
 }

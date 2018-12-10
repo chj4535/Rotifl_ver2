@@ -32,7 +32,7 @@ public class PhotoMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PhotoMainActivity.this, PhotoShareActivity.class);
-                intent.putExtra("groupid", groupid);
+                intent.putExtra("group", group);
                 startActivity(intent);
             }
         });
@@ -41,7 +41,7 @@ public class PhotoMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PhotoMainActivity.this, PhotoCamShareActivity.class);
-                intent.putExtra("groupid", groupid);
+                intent.putExtra("group", group);
                 startActivity(intent);
             }
         });
@@ -50,7 +50,7 @@ public class PhotoMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PhotoMainActivity.this, DownloadPhotoActivity.class);
-                intent.putExtra("groupid", groupid);
+                intent.putExtra("group", group);
                 startActivity(intent);
             }
         });
