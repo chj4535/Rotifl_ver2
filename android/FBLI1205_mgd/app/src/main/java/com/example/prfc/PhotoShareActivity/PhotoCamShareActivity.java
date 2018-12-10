@@ -136,7 +136,10 @@ public class PhotoCamShareActivity extends AppCompatActivity {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
-            String randomid = UUID.randomUUID().toString();
+            Date dt = new Date();
+            SimpleDateFormat full_sdf = new SimpleDateFormat("yyyy-MM-dd, a hh:mm:ss");
+            String date = full_sdf.format(dt);
+            String randomid = date;
             StorageReference ref = storageReference.child("images/"+ randomid);
             ref.putFile(file)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

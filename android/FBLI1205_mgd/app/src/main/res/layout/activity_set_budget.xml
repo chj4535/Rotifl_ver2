@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:text="SetBudget"
+            android:text="예산설정"
             android:textSize="20sp"
             android:textColor="#fff"
             android:gravity="center"

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:text="SetBudget"
+            android:text="지출추가"
             android:textSize="20sp"
             android:textColor="#fff"
             android:gravity="center"
@@ -35,7 +35,7 @@
         <TextView
             android:id="@+id/itemtxview"
             android:textSize="20sp"
-            android:text="Item"
+            android:text="항목"
             android:textColor="#000"
             android:alpha="0.87"
             android:gravity="right"
@@ -74,7 +74,7 @@
         <TextView
             android:id="@+id/priceview"
             android:textSize="20sp"
-            android:text="Price"
+            android:text="가격"
             android:textColor="#000"
             android:alpha="0.87"
             android:gravity="right"

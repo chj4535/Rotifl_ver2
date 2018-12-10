@@ -16,7 +16,7 @@
             android:layout_height="53dp"
             android:background="#8443"
             android:gravity="center"
-            android:text="SetName"
+            android:text="이름설정"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"

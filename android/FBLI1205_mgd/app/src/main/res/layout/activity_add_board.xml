@@ -31,17 +31,29 @@
                     android:id="@+id/titleInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="제목" />
+                    android:textCursorDrawable="@null"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@android:color/black"
+                    android:textColorHint="@android:color/black"
+                    android:hint="제목" />
 
                 <EditText
                     android:id="@+id/contentInput"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="내용" />
+                    android:backgroundTint="@android:color/black"
+                    android:hint="내용"
+                    android:inputType="textMultiLine"
+                    android:maxLines="100"
+                    android:minLines="1"
+                    android:scrollbars="vertical"
+                    android:scrollHorizontally="false"
+                    android:singleLine="false"
+                    android:textColor="@color/black"
+                    android:textColorHint="@android:color/black"
+                    android:textCursorDrawable="@null" />
 
                 <ImageView
                     android:id="@+id/imageInput"
@@ -63,6 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="사진 불러오기"
+                    android:background="@drawable/my_btn_bg"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="148dp" />
 
@@ -72,6 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="등록"
+                    android:background="@drawable/my_btn_bg"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="148dp" />
             </LinearLayout>
